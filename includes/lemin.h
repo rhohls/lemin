@@ -55,18 +55,20 @@ typedef struct	s_connection
 }				t_con;
 
 /* 
-** turn moves is a stack of stack
-** each stack is a single turn
-** each turn contains the list of moves
+** turn moves is a stack of char **
+** each link in list is a single turn
+** each link contains the list of moves 
+** specifically the rooms that will be occupied that turn
 */
-// or should it be list of len ant
-// each index represents an ant
+
+
 typedef struct	s_pathend
 {
 	char		*end;
 	t_con		**all_connections; //list with all connections
-	t_stack	/*issue*/	*turn_moves; //stack of stacks all moves for game
-	
+	t_stack		*turn_moves; //see above
+	int			turn_start;
+
 	t_stack		*curr_path_list; //stack	
 	char		*room_name;
 	int			turn_num;
@@ -74,19 +76,18 @@ typedef struct	s_pathend
 
 void path_to_end(t_pathend *self, t_stack *shortest_path);
 
-void delete_var(t_pathend *self)
-t_pathend *duplicate_var(t_pathend *self)
-char **gen_con_list(char *room_name, void *all_connections)
+void delete_var(t_pathend *self);
+t_pathend *duplicate_var(t_pathend *self);
+// char **gen_con_list(char *room_name, void *all_connections);
 
-void add_room_tolist(char *room_name, void *path_list)
-void update_shrtpth(void *curr_path_list, t_stack *shortest_path)
-int ft_strstrlen(char **strlist)
-int is_occupied(char *room_name, void *turn_moves, int turn_num)
-int isinpath(char *room_name, t_stack *rooms_visted)
+void add_room_tolist(char *room_name, void *path_list);
+void update_shrtpth(void *curr_path_list, t_stack *shortest_path);
+int ft_strstrlen(char **strlist);
+int isinpath(char *room_name, t_stack *rooms_visted);
 
-void make_new_branch(t_pathend *self, t_stack *shortest_path)
-void path_to_end(t_pathend *self, t_stack *shortest_path)
-void find_path(void *turn_moves)
+void make_new_branch(t_pathend *self, t_stack *shortest_path);
+void path_to_end(t_pathend *self, t_stack *shortest_path);
+void find_path(void *turn_moves);
 
 
 

@@ -29,12 +29,13 @@ t_pathend *duplicate_var(t_pathend *self)
 	return (new);
 }
 
-char **gen_con_list(char *room_name, void *all_connections)
+char **gen_con_list(char *room_name, void *all_connections, int *num_con)
 {
 	/* make char ** list of all rooms connected to current room (room name) */
 	char **ret;
 	all_connections = room_name;
 	ret = NULL;
+	*num_con = 1;
 	return (ret);
 }
 
@@ -58,13 +59,12 @@ int ft_strstrlen(char **strlist)
 	return (length);
 }
 
-int is_occupied(char *room_name, void *turn_moves, int turn_num)
+int is_occupied(char *room_name, char **ocupied_rooms)
 {
 	/* check if room will be occupied on certain turn num */
-	char moves;
-	moves = ((char *)turn_moves)[turn_num];
 
-	if (*room_name == moves)
+
+	if (ft_strcmp(*room_name, ocupied_rooms[0]) == 0)
 		return (1);
 	else
 		return (0);
@@ -78,24 +78,6 @@ int isinpath(char *room_name, t_stack *rooms_visted)
 	return (0);
 }
 
-void make_new_branch(t_pathend *self, t_stack *shortest_path)
-{
-	char	**room_con_list;
-	int i;
-	i = 0;
-	room_con_list = gen_con_list(self->room_name, self->all_connections);
-	self->turn_num += 1;
-	
-	while (i < ft_strstrlen(room_con_list))
-	{
-		self->room_name = room_con_list[i];
-		if (!is_occupied(room_con_list[i], self->turn_moves, self->turn_num) && 
-			!(isinpath(room_con_list[i], self->curr_path_list)))
-			path_to_end(duplicate_var(self), shortest_path);
-		i++;
-	}
-	free (room_con_list);
-}
 /*
 ** Recuresive function
 ** Branches and runs down each branch to find the end
@@ -110,19 +92,51 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 		return ;
 	}
 
-	add_room_tolist(self->room_name, self->curr_path_list);
-	
+	add_room_to_pathlist(self->room_name, self->curr_path_list);
+
 	if (ft_strcmp(self->end, self->room_name) == 0)
 		update_shrtpth(self->curr_path_list, shortest_path);
 	else
-		make_new_branch(self, shortest_path);
+		run_new_branchs(self, shortest_path);
 	delete_var(self);
+}
+void run_new_branchs(t_pathend *self, t_stack *shortest_path)
+{
+	char	**room_con_list;
+	char	**ocupied_rooms;
+	int 	num_connections;
+	int 	i;
+
+	i=0;
+
+	room_con_list = gen_con_list(self->room_name, self->all_connections, &num_connections);
+	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
+	self->turn_num += 1;
+	
+	while (i < num_connections)
+	{
+		self->room_name = room_con_list[i];
+		if (!is_occupied(room_con_list[i], ocupied_rooms) && 
+			!(isinpath(room_con_list[i], self->curr_path_list)))
+			path_to_end(duplicate_var(self), shortest_path);
+		i++;
+	}
+	free (room_con_list);
 }
 
 void init_self(t_pathend *self)
 {
 	/*Assign stuff */
 	self->end = NULL;
+	self->turn_num = -1;
+	self->turn_start = -1;
+}
+
+void init_shortest_path(t_stack *shortest_path)
+{
+	/*Assign stuff */
+	shortest_path->start = NULL;
+	shortest_path->length = 0;
 }
 
 void find_path(void *turn_moves)
@@ -130,17 +144,20 @@ void find_path(void *turn_moves)
 	t_stack shortest_path;
 	t_pathend self;
 	
-	//init
-	shortest_path.start = NULL;
-	shortest_path.length = 0;
 	init_self(&self);
+	init_shortest_path(&shortest_path);
 	self.turn_moves = turn_moves;
 	while(shortest_path.start == NULL)
 	{
-		path_to_end(&self, &shortest_path);
 		self.turn_num++;
+		self.turn_start++;
+		path_to_end(&self, &shortest_path);
 	}
 }
+
+
+
+
 
 // int main()
 // {
