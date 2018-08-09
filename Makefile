@@ -42,14 +42,14 @@ all: $(CHECK) $(NAME)
 
 $(CHECK): $(OBJ) $(CHECK_MAIN)
 	@make -C./libft/
-	@$(CC) -o $@ -L $(LIBF) $(OBJ) $(CHECK_MAIN) 
+	$(CC) -o $@ $(OBJ) $(CHECK_MAIN) $(LIBF)
 
 $(NAME): $(OBJ) $(NAME_MAIN)
 	@make -C./libft/
-	@$(CC)  -o $@ $(LIBF) $(OBJ) $(NAME_MAIN)
+	@$(CC) -o $@ $(OBJ) $(NAME_MAIN) $(LIBF)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) -I$(INC_PATH) -o $@ -c $<
+	@$(CC) -I$(INC_PATH) $(LIBF) -o $@ -c $<
 
 clean: cleanlib
 	/bin/rm -rf $(OBJ)

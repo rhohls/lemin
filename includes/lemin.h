@@ -47,13 +47,27 @@ typedef struct	s_lemin
 	t_ant		*ant_list;
 }				t_lemin;
 
+typedef struct	s_connection
+{
+	char		*name;
+	char		**conections;
+	int			num_connections;
+}				t_con;
+
+/* 
+** turn moves is a stack of stack
+** each stack is a single turn
+** each turn contains the list of moves
+*/
+// or should it be list of len ant
+// each index represents an ant
 typedef struct	s_pathend
 {
 	char		*end;
-	t_stack		*curr_path_list; //unkown type
-	void		*all_connections;
-	void		*turn_moves; //should prob be stack of stacks
+	t_con		**all_connections; //list with all connections
+	t_stack	/*issue*/	*turn_moves; //stack of stacks all moves for game
 	
+	t_stack		*curr_path_list; //stack	
 	char		*room_name;
 	int			turn_num;
 }				t_pathend;

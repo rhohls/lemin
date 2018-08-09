@@ -13,22 +13,6 @@
 
 #include "../includes/lemin.h"
 
-
-
-int ft_strinstack(char *str, t_stack *stack_x)
-{
-	t_list	*lst;
-	
-	lst = stack_x->start;
-	while (lst)
-	{
-		if (ft_strcmp(str, (char *)(lst->content)) == 0)
-			return (1);
-		lst = lst->next;
-	}
-	return(0);
-}
-
 void delete_var(t_pathend *self)
 {
 	/* free all the variables */
@@ -157,6 +141,12 @@ void find_path(void *turn_moves)
 		self.turn_num++;
 	}
 }
+
+// int main()
+// {
+// 	ft_putstr("this is string\n");
+// 	return (1);
+// }
 
 /*
 
