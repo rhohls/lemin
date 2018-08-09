@@ -13,16 +13,6 @@
 
 #include "../includes/lemin.h"
 
-typedef struct	s_pathend
-{
-	char		*end;
-	t_stack		*curr_path_list; //unkown type
-	void		*all_connections;
-	void		*turn_moves; //should prob be stack of stacks
-	
-	char		*room_name;
-	int			turn_num;
-}				t_pathend;
 
 
 int ft_strinstack(char *str, t_stack *stack_x)
@@ -42,12 +32,14 @@ int ft_strinstack(char *str, t_stack *stack_x)
 void delete_var(t_pathend *self)
 {
 	/* free all the variables */
+	free(self);
 }
 
 t_pathend *duplicate_var(t_pathend *self)
 {
 	/* duplicate all the variables */
 	t_pathend *new;
+	new = self;
 	new = NULL;
 
 	return (new);
@@ -55,7 +47,9 @@ t_pathend *duplicate_var(t_pathend *self)
 
 char **gen_con_list(char *room_name, void *all_connections)
 {
+	/* make char ** list of all rooms connected to current room (room name) */
 	char **ret;
+	all_connections = room_name;
 	ret = NULL;
 	return (ret);
 }
@@ -63,26 +57,56 @@ char **gen_con_list(char *room_name, void *all_connections)
 void add_room_tolist(char *room_name, void *path_list)
 {
 	/* add the room to the path list */
+	path_list = room_name;
 }
 
-void update_shrtpth( void *curr_path_list, t_stack *shortest_path)
+void update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 {
 	/* change shortest path to something else */
+	shortest_path->start = curr_path_list;
 }
 
+int ft_strstrlen(char **strlist)
+{
+	int length;
+
+	length = 0;
+	return (length);
+}
+
+int is_occupied(char *room_name, void *turn_moves, int turn_num)
+{
+	/* check if room will be occupied on certain turn num */
+	char moves;
+	moves = ((char *)turn_moves)[turn_num];
+
+	if (*room_name == moves)
+		return (1);
+	else
+		return (0);
+}
+
+int isinpath(char *room_name, t_stack *rooms_visted)
+{
+
+	if ((char *)rooms_visted->start == room_name)
+		return (1);
+	return (0);
+}
 
 void make_new_branch(t_pathend *self, t_stack *shortest_path)
 {
 	char	**room_con_list;
 	int i;
 	i = 0;
-	room_con_list = con_list(self->room_name, self->all_connections);
+	room_con_list = gen_con_list(self->room_name, self->all_connections);
 	self->turn_num += 1;
 	
-	while (i < len(room_con_list))
+	while (i < ft_strstrlen(room_con_list))
 	{
 		self->room_name = room_con_list[i];
-		if (isnot_occupied(room_con_list[i], self->turn_moves, self->turn_num) && !isinpath(room_con_list[i], self->curr_path_list))
+		if (!is_occupied(room_con_list[i], self->turn_moves, self->turn_num) && 
+			!(isinpath(room_con_list[i], self->curr_path_list)))
 			path_to_end(duplicate_var(self), shortest_path);
 		i++;
 	}

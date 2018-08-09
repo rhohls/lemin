@@ -17,7 +17,6 @@ OBJ_PATH = ./objs/
 INC_PATH = ./includes/
 
 SRC_FILE =	ft_stacknew.c	\
-			ft_atoi_long.c	\
 			ft_strcount.c	\
 			ft_stackpop.c	\
 			ft_stackpush.c	\
@@ -98,7 +97,7 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_FILE))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILE))
 
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc $(CCFLAGS)
+CC = gcc #$(CCFLAGS)
 
 #all: $(NAME)
 

@@ -33,7 +33,7 @@ NAME_MAIN = ./src_lemin/lemin.c
 
 #Compile
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc $(CCFLAGS)
+CC = gcc #$(CCFLAGS)
 
 LIBF = $(LIB_PATH)libft.a
 
@@ -42,7 +42,7 @@ all: $(CHECK) $(NAME)
 
 $(CHECK): $(OBJ) $(CHECK_MAIN)
 	@make -C./libft/
-	@$(CC) -o $@ $(LIBF) $(OBJ) $(CHECK_MAIN) 
+	@$(CC) -o $@ -L $(LIBF) $(OBJ) $(CHECK_MAIN) 
 
 $(NAME): $(OBJ) $(NAME_MAIN)
 	@make -C./libft/
