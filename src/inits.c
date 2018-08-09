@@ -17,8 +17,8 @@ typedef struct	s_pathend
 {
 	char		*end;
 	t_stack		*curr_path_list; //unkown type
-	void		all_connections;
-	void		turn_moves; //should prob be stack of stacks
+	void		*all_connections;
+	void		*turn_moves; //should prob be stack of stacks
 	
 	char		*room_name;
 	int			turn_num;
@@ -39,7 +39,7 @@ int ft_strinstack(char *str, t_stack *stack_x)
 	return(0);
 }
 
-void free_var(t_pathend *self)
+void delete_var(t_pathend *self)
 {
 	/* free all the variables */
 }
@@ -47,39 +47,42 @@ void free_var(t_pathend *self)
 t_pathend *duplicate_var(t_pathend *self)
 {
 	/* duplicate all the variables */
+	t_pathend *new;
+	new = NULL;
+
+	return (new);
 }
 
-char **gen_con_list(char *room_name, void all_connections)
+char **gen_con_list(char *room_name, void *all_connections)
 {
 	char **ret;
 	ret = NULL;
 	return (ret);
 }
 
-void add_room_tolist(char *room_name, void path_list)
+void add_room_tolist(char *room_name, void *path_list)
 {
 	/* add the room to the path list */
 }
 
-void update_shrtpth( void curr_path_list, t_stack *shortest_path)
+void update_shrtpth( void *curr_path_list, t_stack *shortest_path)
 {
 	/* change shortest path to something else */
 }
 
 
-make_new_branch(t_pathend *self, t_stack *shortest_path)
+void make_new_branch(t_pathend *self, t_stack *shortest_path)
 {
 	char	**room_con_list;
-	t_new	next_room;
 	int i;
 	i = 0;
-	room_con_list = con_list(self->curr_room, self->all_connections);
+	room_con_list = con_list(self->room_name, self->all_connections);
 	self->turn_num += 1;
 	
 	while (i < len(room_con_list))
 	{
-		self->curr_room = room_con_list[i];
-		if (isnot_occupied(room_con_list[i], self->turnmoves, self->turn_num) && !isinpath(room_con_list[i], self->curr_path_list))
+		self->room_name = room_con_list[i];
+		if (isnot_occupied(room_con_list[i], self->turn_moves, self->turn_num) && !isinpath(room_con_list[i], self->curr_path_list))
 			path_to_end(duplicate_var(self), shortest_path);
 		i++;
 	}
@@ -96,19 +99,25 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	if (self->curr_path_list->length > shortest_path->length)
 	{
 		delete_var(self);
-		return ();
+		return ;
 	}
 
-	add_room_tolist(self->curr_room, self->curr_path_list);
+	add_room_tolist(self->room_name, self->curr_path_list);
 	
-	if (ft_strcmp(self->end, self->curr_room) == 0)
-		update_shrtpth(self->curr_path_list, shortest_path)
+	if (ft_strcmp(self->end, self->room_name) == 0)
+		update_shrtpth(self->curr_path_list, shortest_path);
 	else
-		make_new_branch(self, shortest_path)
+		make_new_branch(self, shortest_path);
 	delete_var(self);
 }
 
-void find_path(turn_moves)
+void init_self(t_pathend *self)
+{
+	/*Assign stuff */
+	self->end = NULL;
+}
+
+void find_path(void *turn_moves)
 {
 	t_stack shortest_path;
 	t_pathend self;
@@ -116,15 +125,16 @@ void find_path(turn_moves)
 	//init
 	shortest_path.start = NULL;
 	shortest_path.length = 0;
-	init(&self);
-	self->turn_moves = turn_moves;
+	init_self(&self);
+	self.turn_moves = turn_moves;
 	while(shortest_path.start == NULL)
 	{
-		path_to_end(&shortest_path);
-		turn_num++;
+		path_to_end(&self, &shortest_path);
+		self.turn_num++;
 	}
 }
 
+/*
 
 void play_game()
 {
@@ -147,3 +157,4 @@ void main()
 	play_game(data);
 	return ;
 }
+*/

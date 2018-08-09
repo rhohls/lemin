@@ -46,6 +46,6 @@ typedef struct	s_lemin
 	t_ant		*ant_list;
 }				t_lemin;
 
-
+void path_to_end(t_pathend *self, t_stack *shortest_path);
 
 #endif
