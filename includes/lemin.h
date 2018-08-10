@@ -16,36 +16,32 @@
 # include "../libft/includes/libft.h"
 # include <stdlib.h>
 
+/* might not need 
 typedef struct	s_room
 {
 	char		*name;
-	int			occupied;
-	int			num_connections;
-	char		**conections;
+	int			x_pos;
+	int			y_pos;
 }				t_room;
-
-typedef struct	s_path
-{
-	char		**path;
-	int			path_step;
-}				t_path;
-
-// typedef t_stack t_path;
-
-typedef struct	s_ant
-{
-	int			number;
-	t_path		path;
-}				t_ant;
+*/
 
 typedef struct	s_lemin
 {
 	char		*start;
 	char		*end;
-	t_room		*room_list;
+	t_stack		*room_list;
 	int			num_ants;
-	t_ant		*ant_list;
+	t_stack		*ant_list;
+	t_stack		*turn_moves;
+	t_stack		*connections;
 }				t_lemin;
+
+typedef struct	s_ant
+{
+	int			number;
+	t_stack		*path;
+	int			turn_start;
+}				t_ant;
 
 typedef struct	s_connection
 {
@@ -55,24 +51,26 @@ typedef struct	s_connection
 }				t_con;
 
 /* 
+// unsure whether to make char** or t_stack
 ** turn moves is a stack of char **
 ** each link in list is a single turn
 ** each link contains the list of moves 
 ** specifically the rooms that will be occupied that turn
 */
 
-
 typedef struct	s_pathend
 {
 	char		*end;
-	t_con		**all_connections; //list with all connections
+	t_stack		*all_connections; //stack pointing to t_con
 	t_stack		*turn_moves; //see above
 	int			turn_start;
-
-	t_stack		*curr_path_list; //stack	
+	/* ^-const   v-delta */
+	t_stack		*curr_path_list; 	
 	char		*room_name;
 	int			turn_num;
 }				t_pathend;
+
+
 
 void path_to_end(t_pathend *self, t_stack *shortest_path);
 
@@ -91,4 +89,6 @@ void find_path(void *turn_moves);
 
 int ft_strinstack(char *str, t_stack *stack_x);
 
+
+t_lemin *capture_data(void);
 #endif

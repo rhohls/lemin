@@ -29,6 +29,11 @@ t_pathend *duplicate_var(t_pathend *self)
 	return (new);
 }
 
+t_stack *ft_stackdup(t_stack *stack)
+{
+	return(stack);
+}
+
 char **gen_con_list(char *room_name, void *all_connections, int *num_con)
 {
 	/* make char ** list of all rooms connected to current room (room name) */
@@ -123,68 +128,93 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 	free (room_con_list);
 }
 
-void init_self(t_pathend *self)
+t_pathend *init_self(t_lemin* lemin)
 {
-	/*Assign stuff */
-	self->end = NULL;
-	self->turn_num = -1;
+	// pass variable to assign start, end etc
+	t_pathend *self;
+
+	self = (t_pathend *)malloc(sizeof(t_pathend));
+	self->end = lemin->end;
+	self->all_connections = lemin->connections;
+	self->turn_moves = lemin->turn_moves;
 	self->turn_start = -1;
+	self->room_name = NULL;
+	self->curr_path_list = ft_stacknew;
+	self->turn_num = -1;
+
+	return (self);
 }
 
-void init_shortest_path(t_stack *shortest_path)
+t_stack *init_shortest_path(void)
 {
-	/*Assign stuff */
-	shortest_path->start = NULL;
-	shortest_path->length = 0;
+	t_stack *shortest_path;
+
+	shortest_path = ft_stacknew;
+	shortest_path->length = INTMAX;
 }
 
-void find_path(void *turn_moves)
+t_stack *find_path(t_lemin* lemin)
 {
-	t_stack shortest_path;
-	t_pathend self;
+	t_stack *shortest_path;
+	t_pathend *self;
 	
-	init_self(&self);
-	init_shortest_path(&shortest_path);
-	self.turn_moves = turn_moves;
-	while(shortest_path.start == NULL)
+	self = init_self(lemin);
+	shortest_path = init_shortest_path();
+	while(shortest_path->start == NULL)
 	{
-		self.turn_num++;
-		self.turn_start++;
-		path_to_end(&self, &shortest_path);
+		self->turn_num++;
+		self->turn_start++;
+		path_to_end(self, shortest_path);
+	}
+	delete_var(self);
+	return(shortest_path);
+}
+
+
+void play_game(t_lemin* lemin)
+{
+	int		i;
+	t_ant	*ant;
+	i = 0;
+
+	while (i < lemin->num_ants)
+	{
+		ant = get_ant(lemin, i);
+		ant->path = find_path(lemin);
+		update_moves(ant->path);
+		i++;
 	}
 }
 
-
-
-
-
-// int main()
-// {
-// 	ft_putstr("this is string\n");
-// 	return (1);
-// }
-
-/*
-
-void play_game()
+void print_moves(t_lemin* lemin)
 {
-	for each ant
-		ant->path = find_pathturn_moves
-		add ant->path to turn_moves
+	t_list	*turn;
+	char	*move;
+	int 	i;
 
-	print all moves
+	turn = lemin->turn_moves->start;
+	while (turn)
+	{
+		i = 0;
+		
+		while (i < turn->content_size) //check this
+		{
+			move = turn->content[i]; //lol idk
+			printf("%s", move); // what about and number and L
+		}
+	}
+
 }
-
-
-
 
 void main()
 {
-	void	*data;
+	t_lemin	*lemin;
 
-	data = capture_data();
-	error_check_data(data); //exit inside also use stderr etc.
-	play_game(data);
+	lemin = capture_data();
+	// error_check_data(data); //exit inside also use stderr etc.
+	play_game(lemin);
+
+	print_moves(lemin);
+
 	return ;
 }
-*/
