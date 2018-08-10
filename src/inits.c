@@ -73,7 +73,7 @@ int is_occupied(char *room_name, char **ocupied_rooms)
 int isinpath(char *room_name, t_stack *rooms_visted)
 {
 
-	if ((char *)rooms_visted->start == room_name)
+	if (ft_strinstack(room_name, rooms_visted) == 1)
 		return (1);
 	return (0);
 }
@@ -86,12 +86,11 @@ int isinpath(char *room_name, t_stack *rooms_visted)
 
 void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
-	if (self->curr_path_list->length > shortest_path->length)
+	if ((self->curr_path_list->length + 1) > (shortest_path->length))
 	{
 		delete_var(self);
 		return ;
 	}
-
 	add_room_to_pathlist(self->room_name, self->curr_path_list);
 
 	if (ft_strcmp(self->end, self->room_name) == 0)
@@ -106,10 +105,10 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 	char	**ocupied_rooms;
 	int 	num_connections;
 	int 	i;
-
 	i=0;
 
-	room_con_list = gen_con_list(self->room_name, self->all_connections, &num_connections);
+	room_con_list = gen_con_list(self->room_name, self->all_connections,
+									&num_connections);
 	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
 	self->turn_num += 1;
 	

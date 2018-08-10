@@ -16,7 +16,9 @@
 int ft_strinstack(char *str, t_stack *stack_x)
 {
 	t_list	*lst;
-	
+
+	if (!str || !stack_x)	
+		return (0);
 	lst = stack_x->start;
 	while (lst)
 	{

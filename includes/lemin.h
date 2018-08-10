@@ -89,6 +89,6 @@ void make_new_branch(t_pathend *self, t_stack *shortest_path);
 void path_to_end(t_pathend *self, t_stack *shortest_path);
 void find_path(void *turn_moves);
 
-
+int ft_strinstack(char *str, t_stack *stack_x);
 
 #endif
