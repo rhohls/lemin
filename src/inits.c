@@ -186,8 +186,9 @@ void play_game(t_lemin* lemin)
 	}
 }
 
-void print_moves(t_lemin* lemin)
+void print_all_moves(t_lemin* lemin)
 {
+	// for debug maybe?
 	t_list	*turn;
 	char	*move;
 	int 	i;
@@ -199,7 +200,7 @@ void print_moves(t_lemin* lemin)
 		
 		while (i < turn->content_size) //check this
 		{
-			move = turn->content[i]; //lol idk
+			move = turn->content; //lol idk
 			printf("%s", move); // what about and number and L
 		}
 	}

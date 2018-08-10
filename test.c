@@ -27,6 +27,7 @@ t_stack *make_stack(void)
 }
 void stringin_test(t_stack *stack)
 {
+	t_stack test;
 	printf("Test string in stack\n");
 	if (ft_strinstack("bad", stack) == 1)
 		printf("fail test 0\n");
@@ -44,14 +45,32 @@ void stringin_test(t_stack *stack)
 		printf("fail test 6\n");
 	if (ft_strinstack("\0", stack) == 1)
 		printf("fail test 7\n");
-	stack->start = NULL;
-	if (ft_strinstack("hello", stack) == 1)
+	test.start = NULL;
+	if (ft_strinstack("hello", &test) == 1)
 		printf("fail test 8\n");
 }
+
+void print_str_stack(t_stack *stack)
+{
+    t_list *node;
+
+    if (!stack)
+        return ;
+    node = stack->start;
+    while(node)
+    {
+        printf("\t%s\n", (char *)(node->content));
+        node = node->next;
+    }
+}
+
 int main()
 {
 	printf("~~~ Doing tests ~~~\n");
 	t_stack *stack = make_stack();
 	stringin_test(stack);
+
+	printf("Printing strings\n");
+	print_str_stack(stack);
 
 }

@@ -29,8 +29,8 @@ typedef struct	s_lemin
 {
 	char		*start;
 	char		*end;
-	t_stack		*room_list;
 	int			num_ants;
+	t_stack		*room_list;
 	t_stack		*ant_list;
 	t_stack		*turn_moves;
 	t_stack		*connections;
@@ -50,12 +50,13 @@ typedef struct	s_connection
 	int			num_connections;
 }				t_con;
 
-/* 
-// unsure whether to make char** or t_stack
-** turn moves is a stack of char **
+/*
+** turn moves = rooms ocupied that turn
+** turn moves is a stack
 ** each link in list is a single turn
-** each link contains the list of moves 
-** specifically the rooms that will be occupied that turn
+** each link contains a char **
+** the content size is number of char *
+** each char* is the room name
 */
 
 typedef struct	s_pathend
