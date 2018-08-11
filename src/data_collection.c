@@ -12,11 +12,57 @@
 
 
 #include "../includes/lemin.h"
+#include <stdio.h>
+
+void init_lemin(t_lemin *lemin)
+{
+	lemin->start = NULL;
+	lemin->end = NULL;
+	lemin->num_ants = 0;
+	lemin->room_list = ft_stacknew();
+	lemin->ant_list = ft_stacknew();
+	lemin->turn_moves = ft_stacknew();
+	lemin->connections = ft_stacknew();
+}
+
+void add_con_struct(char *room_name, t_lemin *lemin)
+{
+	t_con	*new;
+	t_list	*node;
+
+	new = (t_con *)malloc(sizeof(t_con));
+	new->name = room_name;
+	new->conections = NULL;
+	new->num_connections = 0;
+	new->connect_list = ft_stacknew();
+	node = ft_lstnew(NULL, 0);
+	node->content = (void *)new;
+	ft_stackpush(lemin->connections, node);
+}
+
+t_con *find_con(t_stack *connections, char *room_name)
+{
+	t_list	*node;
+	t_con	*connect;
+
+	node = connections->start;
+	while(node)
+	{
+		connect = node->content;
+		printf("comparing |%s| with |%s|\n", room_name, connect->name);
+		if (ft_strcmp(connect->name, room_name) == 0)
+			return(connect);
+		node = node->next;
+	}
+	ft_putstr("exiting cause:\n");
+	printf("No room |%s| found when trying to add connection\n", room_name);
+	exit(0);
+}
+
+// void add_room_con(char *room_name, t_con connection)
 
 void add_connection(char *str, t_lemin *lemin)
 {
-	char **rooms;
-
 	/*
 	check room is in room list (str in stack)
 		return "room doesnt exit"
@@ -25,41 +71,76 @@ void add_connection(char *str, t_lemin *lemin)
 	add connection to room 2
 	free strsplit
 	*/
+	char **con_details;
+	t_con *room_con;
+
+	con_details = ft_strsplit(str, '-');
+	if (con_details[2] != NULL)
+	{
+		printf("Issue with adding a connection (more than 2 arguments)\n");
+		exit(0);
+	}
+	room_con = find_con(lemin->connections, con_details[0]);
+	ft_stackpush(room_con->connect_list,
+				ft_lstnew(con_details[0], ft_strlen(con_details[0])));
+	room_con = find_con(lemin->connections, con_details[1]);
+	ft_stackpush(room_con->connect_list,
+				ft_lstnew(con_details[1], ft_strlen(con_details[1])));
+	printf("detail\n %s \n", (char*)lemin->connections->start->content);
+	// ft_del_chararr(con_details, 2);			
 }
 
-void add_room(char *str, t_lemin *lemin)
+void *add_room(char *str, t_lemin *lemin)
 {
 	/* 
 	str_split ensure there is 3 (name, x, y)
 	add to room list
 	and coonection list
 	*/
+	char **room_details;
+	char *room_name;
+
+	room_details = ft_strsplit(str, ' ');
+	if (room_details[3] != NULL)
+	{
+		printf("Issue with deatials of room (more than 3 arguments)\n");
+		exit(0);
+	}
+	room_name = room_details[0];
+	// check its name not already in list
+	ft_stackpush(lemin->room_list,
+					ft_lstnew(room_name, ft_strlen(room_name)));
+	add_con_struct(room_name, lemin);
+	ft_del_chararr(room_details, 3);
 }
+
 void add_special_room(char *str, t_lemin *lemin, int fd)
 {
-	char *line;
+	char	*line;
+	char	*room_name;
 
-	if (get_next_line(fd, &line) != 1)
+	if (get_next_line(fd, &line) != 1) // do i need this?
 	{
 		printf("bad gnl\n");
 		exit(0);		
-	}	
+	}
+	add_room(line, lemin);
+	room_name = (char *)(lemin->room_list->start->content);
 	if (ft_strcmp(str, "start") == 0)
-		lemin->start = ft_strdup(line); // not going to work (need strsplit)
+		lemin->start = room_name;
 	else if (ft_strcmp(str, "end") == 0)
-		lemin->end = ft_strdup(line);
+		lemin->end = room_name;
 	else
 	{
 		printf("Bad command: |##%s|", str);
 		exit(0);		
 	}
-	add_room(line, lemin);
 	free(line);
 }
 
 int bad_command(char *str)
 {
-	if (str == NULL || str[0] == "\0" || str[0] == "\n")
+	if (str == NULL || str[0] == '\0' || str[0] == '\n')
 		return (1);
 	else
 		return (0);
@@ -73,9 +154,10 @@ t_lemin *capture_data(void)
 
 	fd = 0;
 	lemin = (t_lemin *)malloc(sizeof(t_lemin));
+	init_lemin(lemin);
 	if (get_next_line(fd, &line) != 1)
 	{
-		printf("bad");
+		printf("bad gnl return\n");
 		exit(0);
 	}
 	//atoi str cmp for 0
@@ -107,4 +189,13 @@ t_lemin *capture_data(void)
 		free(line);
 	}
 	return(lemin);
+}
+
+int main()
+{
+	t_lemin *lemin;
+	lemin = capture_data();
+	// printf("rooms? %p\n", lemin->room_list);
+	print_lemin(lemin);
+	return (1);
 }

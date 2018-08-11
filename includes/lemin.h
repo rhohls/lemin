@@ -15,6 +15,9 @@
 
 # include "../libft/includes/libft.h"
 # include <stdlib.h>
+# include <stdio.h>
+
+void ft_del_chararr(char **array, int amt);
 
 /* might not need 
 typedef struct	s_room
@@ -23,6 +26,10 @@ typedef struct	s_room
 	int			x_pos;
 	int			y_pos;
 }				t_room;
+*/
+
+/*
+** room list is
 */
 
 typedef struct	s_lemin
@@ -47,6 +54,7 @@ typedef struct	s_connection
 {
 	char		*name;
 	char		**conections;
+	t_stack		*connect_list; //convert to send to path
 	int			num_connections;
 }				t_con;
 
@@ -92,4 +100,5 @@ int ft_strinstack(char *str, t_stack *stack_x);
 
 
 t_lemin *capture_data(void);
+void print_lemin(t_lemin *lemin);
 #endif

@@ -13,11 +13,7 @@
 
 #include "../includes/lemin.h"
 
-void delete_var(t_pathend *self)
-{
-	/* free all the variables */
-	free(self);
-}
+
 
 t_pathend *duplicate_var(t_pathend *self)
 {
@@ -44,7 +40,7 @@ char **gen_con_list(char *room_name, void *all_connections, int *num_con)
 	return (ret);
 }
 
-void add_room_tolist(char *room_name, void *path_list)
+void add_room_to_pathlist(char *room_name, void *path_list)
 {
 	/* add the room to the path list */
 	path_list = room_name;
@@ -56,20 +52,12 @@ void update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 	shortest_path->start = curr_path_list;
 }
 
-int ft_strstrlen(char **strlist)
-{
-	int length;
-
-	length = 0;
-	return (length);
-}
-
 int is_occupied(char *room_name, char **ocupied_rooms)
 {
 	/* check if room will be occupied on certain turn num */
 
 
-	if (ft_strcmp(*room_name, ocupied_rooms[0]) == 0)
+	if (ft_strcmp(room_name, ocupied_rooms[0]) == 0)
 		return (1);
 	else
 		return (0);

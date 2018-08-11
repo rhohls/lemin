@@ -5,6 +5,7 @@
 
 #include "../includes/lemin.h"
 
+
 void print_str_stack(t_stack *stack)
 {
     t_list *node;
@@ -64,13 +65,15 @@ void print_connections(t_stack *conections)
     {
         conn = room->content;
         printf("\tRoom name: \"%s\"\n", conn->name);
-        print_char_starstar(conn->conections, conn->num_connections);
+        //print_char_starstar(conn->conections, conn->num_connections);
+        //print_str_stack(conn->connect_list);
         room = room->next;
     }
 }
 
 void print_lemin(t_lemin *lemin)
 {
+    printf("\n~~~  LEMIN DETAILS  ~~~\n");
     printf("Start |%s|\n", lemin->start);
     printf("End   |%s|\n", lemin->end);
     printf("Number of ants :%i:\n", lemin->num_ants);
@@ -81,7 +84,7 @@ void print_lemin(t_lemin *lemin)
     print_turnmoves(lemin->turn_moves);
     
     printf("\nConnections:\n");
-    print_connections(lemin->connections);
+    // print_connections(lemin->connections);
 
 
 

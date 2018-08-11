@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "lemin.h": "c"
+        "lemin.h": "c",
+        "stdio.h": "c"
     }
 }
