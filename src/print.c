@@ -23,6 +23,25 @@ void print_str_stack(t_stack *stack)
     }
 }
 
+void print_str_connection(t_stack *stack)
+{
+    t_list  *node;
+    t_con   *con;
+
+    if (!stack || !stack->start)
+    {
+        printf("Nothing to print\n");
+        return ;
+    }
+    node = stack->start;
+    while(node)
+    {
+        con = node->content;
+        printf("\t%s\n", (char *)(con->name));
+        node = node->next;
+    }
+}
+
 void print_char_starstar(char** str_list, int num_str)
 {
     int i;

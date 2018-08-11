@@ -101,4 +101,6 @@ int ft_strinstack(char *str, t_stack *stack_x);
 
 t_lemin *capture_data(void);
 void print_lemin(t_lemin *lemin);
+void print_str_connection(t_stack *stack);
+
 #endif

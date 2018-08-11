@@ -31,14 +31,18 @@ void add_con_struct(char *room_name, t_lemin *lemin)
 	t_list	*node;
 
 	new = (t_con *)malloc(sizeof(t_con));
-	new->name = room_name;
+	new->name = ft_strdup(room_name);
 	new->conections = NULL;
 	new->num_connections = 0;
 	new->connect_list = ft_stacknew();
+
 	node = ft_lstnew(NULL, 0);
 	node->content = (void *)new;
+
 	ft_stackpush(lemin->connections, node);
-}
+
+	// printf("detail add construct\n %p - %s \n", ((t_con *)lemin->connections->start->content)->name,(char*)((t_con *)lemin->connections->start->content)->name);
+	}
 
 t_con *find_con(t_stack *connections, char *room_name)
 {
@@ -49,7 +53,7 @@ t_con *find_con(t_stack *connections, char *room_name)
 	while(node)
 	{
 		connect = node->content;
-		printf("comparing |%s| with |%s|\n", room_name, connect->name);
+		printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
 		if (ft_strcmp(connect->name, room_name) == 0)
 			return(connect);
 		node = node->next;
@@ -58,8 +62,6 @@ t_con *find_con(t_stack *connections, char *room_name)
 	printf("No room |%s| found when trying to add connection\n", room_name);
 	exit(0);
 }
-
-// void add_room_con(char *room_name, t_con connection)
 
 void add_connection(char *str, t_lemin *lemin)
 {
@@ -74,19 +76,32 @@ void add_connection(char *str, t_lemin *lemin)
 	char **con_details;
 	t_con *room_con;
 
-	con_details = ft_strsplit(str, '-');
+
+	printf("printing all con names\n");
+	print_str_connection(lemin->connections);
+
+	ft_putstr("1\n");
+	printf("line in : %s\n", str);
+
+	if (!(con_details = ft_strsplit(str, '-')))
+	{
+		printf("fail malloc strsplit for connection\n");
+		exit(0);
+	}
 	if (con_details[2] != NULL)
 	{
 		printf("Issue with adding a connection (more than 2 arguments)\n");
 		exit(0);
 	}
+	printf("room1 |%s| room2 |%s|\n", con_details[0], con_details[2]);
+	ft_putstr("2\n");
 	room_con = find_con(lemin->connections, con_details[0]);
 	ft_stackpush(room_con->connect_list,
 				ft_lstnew(con_details[0], ft_strlen(con_details[0])));
 	room_con = find_con(lemin->connections, con_details[1]);
 	ft_stackpush(room_con->connect_list,
 				ft_lstnew(con_details[1], ft_strlen(con_details[1])));
-	printf("detail\n %s \n", (char*)lemin->connections->start->content);
+	// printf("detail addconection2\n %s \n", (char*)((t_con *)lemin->connections->start->content)->name);
 	// ft_del_chararr(con_details, 2);			
 }
 
@@ -112,6 +127,8 @@ void *add_room(char *str, t_lemin *lemin)
 					ft_lstnew(room_name, ft_strlen(room_name)));
 	add_con_struct(room_name, lemin);
 	ft_del_chararr(room_details, 3);
+	// printf("detail addroom\n %p - %s \n", ((t_con *)lemin->connections->start->content)->name,(char*)((t_con *)lemin->connections->start->content)->name);
+
 }
 
 void add_special_room(char *str, t_lemin *lemin, int fd)
