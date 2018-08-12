@@ -12,58 +12,22 @@
 
 
 #include "../includes/lemin.h"
-#include <stdio.h>
 
-int bad_command(char *str)
+int is_occupied(char *room_name, char **ocupied_rooms)
 {
-	if (str == NULL || str[0] == '\0' || str[0] == '\n')
+	/* check if room will be occupied on certain turn num */
+
+
+	if (ft_strcmp(room_name, ocupied_rooms[0]) == 0)
 		return (1);
 	else
 		return (0);
 }
 
-t_lemin *capture_data(void)
+int isinpath(char *room_name, t_stack *rooms_visted)
 {
-	t_lemin *lemin;
-	char	*line;
-	int		fd;
 
-	fd = 0;
-	lemin = (t_lemin *)malloc(sizeof(t_lemin));
-	init_lemin(lemin);
-	if (get_next_line(fd, &line) != 1)
-	{
-		printf("bad gnl return\n");
-		exit(0);
-	}
-	//atoi str cmp for 0
-	lemin->num_ants = ft_atoi(line);
-	free(line);
-
-	while(get_next_line(fd, &line) == 1)
-	{
-		if (bad_command(line))
-		{
-			printf("bad command: |%s|", line);
-			exit(0);
-		}
-		else if (line[0] == '#' && line[1] == '#')
-		{
-			add_special_room(line + 2, lemin, fd);
-		}
-		else if (ft_strchr(line, '-'))
-		{
-			// break into new gnl loop
-			// maybe - cause all conns come after rooms
-			add_connection(line, lemin);
-		}
-		else if (line[0] != '#')
-		{
-			// its a room! (add it) - not sure if going to 
-			add_room(line, lemin);
-		}
-		free(line);
-	}
-	return(lemin);
+	if (ft_strinstack(room_name, rooms_visted) == 1)
+		return (1);
+	return (0);
 }
-

@@ -94,7 +94,7 @@ int isinpath(char *room_name, t_stack *rooms_visted);
 
 void make_new_branch(t_pathend *self, t_stack *shortest_path);
 void path_to_end(t_pathend *self, t_stack *shortest_path);
-void find_path(void *turn_moves);
+t_stack *find_path(t_lemin* lemin);
 
 int ft_strinstack(char *str, t_stack *stack_x);
 
@@ -102,5 +102,13 @@ int ft_strinstack(char *str, t_stack *stack_x);
 t_lemin *capture_data(void);
 void print_lemin(t_lemin *lemin);
 void print_str_connection(t_stack *stack);
+
+void add_con_struct(char *room_name, t_lemin *lemin);
+t_pathend *init_self(t_lemin* lemin);
+t_stack *ft_stackdup(t_stack *stack);
+t_pathend *duplicate_var(t_pathend *self);
+
+
+
 
 #endif

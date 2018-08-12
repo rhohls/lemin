@@ -30,28 +30,24 @@ t_stack *ft_stackdup(t_stack *stack)
 	return(stack);
 }
 
-t_pathend *init_self(t_lemin* lemin)
+char **gen_con_list(char *room_name, void *all_connections, int *num_con)
 {
-	// pass variable to assign start, end etc
-	t_pathend *self;
-
-	self = (t_pathend *)malloc(sizeof(t_pathend));
-	self->end = lemin->end;
-	self->all_connections = lemin->connections;
-	self->turn_moves = lemin->turn_moves;
-	self->turn_start = -1;
-	self->room_name = NULL;
-	self->curr_path_list = ft_stacknew();
-	self->turn_num = -1;
-
-	return (self);
+	/* make char ** list of all rooms connected to current room (room name) */
+	char **ret;
+	all_connections = room_name;
+	ret = NULL;
+	*num_con = 1;
+	return (ret);
 }
 
-t_stack *init_shortest_path(void)
+void add_room_to_pathlist(char *room_name, void *path_list)
 {
-	t_stack *shortest_path;
-
-	shortest_path = ft_stacknew();
-	shortest_path->length = INTMAX;
+	/* add the room to the path list */
+	path_list = room_name;
 }
 
+void update_shrtpth(void *curr_path_list, t_stack *shortest_path)
+{
+	/* change shortest path to something else */
+	shortest_path->start = curr_path_list;
+}

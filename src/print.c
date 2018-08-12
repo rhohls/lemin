@@ -105,7 +105,28 @@ void print_lemin(t_lemin *lemin)
     printf("\nConnections:\n");
     // print_connections(lemin->connections);
 
+}
 
 
+/*
+void print_all_moves(t_lemin* lemin)
+{
+	// for debug maybe?
+	t_list	*turn;
+	char	*move;
+	int 	i;
+
+	turn = lemin->turn_moves->start;
+	while (turn)
+	{
+		i = 0;
+		
+		while (i < turn->content_size) //check this
+		{
+			move = turn->content; //lol idk
+			printf("%s", move); // what about and number and L
+		}
+	}
 
 }
+*/

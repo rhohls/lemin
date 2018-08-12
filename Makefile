@@ -12,6 +12,7 @@
 
 CHECK = checker
 NAME = lem-in
+TEST? = test.c
 
 # Path
 SRC_PATH = ./src/
@@ -20,7 +21,19 @@ INC_PATH = ./includes/
 LIB_PATH = ./libft/
 
 # Files
-SRC_FILE =	inits.c        \
+SRC_FILE =	inits.c			\
+			add_connection.c	\
+			add_room.c		\
+			data_collection.c	\
+			data_free.c		\
+			ft_strin.c		\
+			generate_paths.c	\
+			inits.c			\
+			path_bool.c		\
+			pathing.c		\
+			pathing_func.c	\
+			print.c			\
+	
 
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
@@ -50,6 +63,10 @@ $(NAME): $(OBJ) $(NAME_MAIN)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) -I$(INC_PATH) $(LIBF) -o $@ -c $<
+
+test: $(OBJ)
+	@make -C./libft/
+	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBFT)
 
 clean: cleanlib
 	/bin/rm -rf $(OBJ)
