@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 09:02:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/07 09:02:27 by rhohls           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 
 #include "../includes/lemin.h"
 
-int is_occupied(char *room_name, char **ocupied_rooms)
+int	is_occupied(char *room_name, char **ocupied_rooms)
 {
 	/* check if room will be occupied on certain turn num */
 
@@ -24,7 +12,7 @@ int is_occupied(char *room_name, char **ocupied_rooms)
 		return (0);
 }
 
-int isinpath(char *room_name, t_stack *rooms_visted)
+int	isinpath(char *room_name, t_stack *rooms_visted)
 {
 
 	if (ft_strinstack(room_name, rooms_visted) == 1)

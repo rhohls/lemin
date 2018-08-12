@@ -1,14 +1,13 @@
 
-
 #include "../includes/lemin.h"
 
-void delete_var(t_pathend *self)
+void    delete_var(t_pathend *self)
 {
 	/* free all the variables */
 	free(self);
 }
 
-void ft_del_chararr(char **array, int amt)
+void    ft_del_chararr(char **array, int amt)
 {
     int i;
 

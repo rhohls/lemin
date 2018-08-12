@@ -1,19 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 09:02:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/07 09:02:27 by rhohls           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 
 #include "../includes/lemin.h"
 
-int ft_strinstack(char *str, t_stack *stack_x)
+int	ft_strinstack(char *str, t_stack *stack_x)
 {
 	t_list	*lst;
 
@@ -29,7 +17,7 @@ int ft_strinstack(char *str, t_stack *stack_x)
 	return(0);
 }
 
-int ft_strinlist(char *str, char **list, int list_len)
+int	ft_strinlist(char *str, char **list, int list_len)
 {
 	int i;
 

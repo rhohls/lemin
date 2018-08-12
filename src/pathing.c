@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   inits.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/07 09:02:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/07 09:02:27 by rhohls           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/lemin.h"
 
 /*
@@ -37,7 +25,7 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 {
 	char	**room_con_list;
-	char	**ocupied_rooms;
+	char	**ocupied_rooms; // t_stack?
 	int 	num_connections;
 	int 	i;
 	i=0;

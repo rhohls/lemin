@@ -1,8 +1,4 @@
 
-
-
-
-
 #include "../includes/lemin.h"
 
 
