@@ -19,8 +19,10 @@
 # include <stdio.h>
 
 t_lemin		*capture_data(int fd);
+void		update_capture(t_lemin *lemin);
 
 void		add_con_struct(char *room_name, t_lemin *lemin);
+t_con		*find_con(t_stack *connections, char *room_name)
 void		add_connection(char *str, t_lemin *lemin);
 
 void		add_special_room(char *str, t_lemin *lemin, int fd);
@@ -39,9 +41,10 @@ void		init_lemin(t_lemin *lemin);
 int			isinpath(char *room_name, t_stack *rooms_visted);
 int			is_occupied(char *room_name, char **ocupied_rooms);
 
+char		**ft_stacktochar(t_stack *stack);
 t_pathend	*duplicate_var(t_pathend *self);
 t_stack		*ft_stackdup(t_stack *stack);
-char		**gen_con_list(char *room_name, void *all_connections, int *num_con);
+char		**get_char_con_list(char *room_name, void *all_connections, int *num_con);
 void		add_room_to_pathlist(char *room_name, void *path_list);
 void		update_shrtpth(void *curr_path_list, t_stack *shortest_path);
 void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);

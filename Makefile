@@ -44,7 +44,7 @@ NAME_MAIN = ./src_lemin/lemin.c
 
 #Compile
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc $(CCFLAGS)
+CC = gcc #$(CCFLAGS)
 
 LIBF = $(LIB_PATH)libft.a
 

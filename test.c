@@ -20,9 +20,34 @@ int main()
 	lemin = capture_data(0);
 	print_lemin(lemin);
 
-	find_path(lemin, &ant);
-	print_ant_details(&ant);
+	// int i = 0;
+	// t_con *connect = lemin->connections->start->content;
+	// t_list *node = connect->connect_list->start;
+	// printf("Name: \"%s\"  num_con %i\n", connect->name, connect->connect_list->length);
+	// while (i < connect->connect_list->length)
+	// {
+	// 	printf("room: %s\n", node->content);
+	// 	node = node->next;
+	// 	i++;
+	// }
+	
+	t_con *connect = lemin->connections->start->content;
+	char **list;
+	int i = 0;
+	list = connect->conections;
+	while (i < connect->connect_list->length)
+	{
+		printf("room: %s\n", list[i]);
+		i++;
+	}	
 
+	
+	// ant.number = 1;
+	// ant.path = NULL;
+	// ant.turn_start = 3;
+	// find_path(lemin, &ant);
+	// printf("\n-- Ant details --\n");
+	// print_ant_details(&ant);
 	return (1);
 }
 

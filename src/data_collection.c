@@ -66,6 +66,25 @@ t_lemin *capture_data(int fd)
 		}
 		// free(line);
 	}
+	update_capture(lemin);
 	return(lemin);
 }
 
+void		update_con(t_lemin *lemin)
+{
+	t_list	*node;
+	t_con	*con;
+
+	node = lemin->connections->start;
+	while(node)
+	{
+		con = node->content;
+		con->num_connections = con->connect_list->length;
+		con->conections = ft_stacktochar(con->connect_list);
+		node = node->next;
+	}	
+}
+void		update_capture(t_lemin *lemin)
+{
+	update_con(lemin);
+}

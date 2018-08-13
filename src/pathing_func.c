@@ -12,6 +12,25 @@
 
 #include "../includes/lemin.h"
 
+char		**ft_stacktochar(t_stack *stack)
+{
+	int		i;
+	char	**ret;
+	t_list	*node;
+
+	i = stack->length;
+	ret = (char **)ft_memalloc(sizeof(char *) * (i + 1));
+	node = stack->start;
+	i--;
+	while (i >= 0 && node)
+	{
+		ret[i] = (char *)node->content;
+		i--;
+		node = node->next;
+	}
+	return (ret);
+}
+
 t_pathend	*duplicate_var(t_pathend *self)
 {
 	/* duplicate all the variables */
@@ -29,14 +48,16 @@ t_stack		*ft_stackdup(t_stack *stack)
 	return(stack);
 }
 
-char		**gen_con_list(char *room_name, void *all_connections, int *num_con)
+char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 {
 	/* make char ** list of all rooms connected to current room (room name) */
-	printf("!!!! NOT CODED YET !!!!");
-	char **ret;
-	all_connections = room_name;
-	ret = NULL;
-	*num_con = 1;
+	t_con	*connection;
+	char	**ret;
+
+	connection = find_con(all_connections, room_name);
+	ret = connection->conections;
+	*num_con = connection->num_connections;
+		
 	return (ret);
 }
 
@@ -44,20 +65,17 @@ void		add_room_to_pathlist(char *room_name, void *path_list)
 {
 	/* add the room to the path list */
 	printf("!!!! NOT CODED YET !!!!");
-	path_list = room_name;
 }
 
 void		update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 {
 	/* change shortest path to something else */
 	printf("!!!! NOT CODED YET !!!!");
-	shortest_path->start = curr_path_list;
 }
 
 void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
 {
 	/* prob make return t_stack else can make char**(harder) */
-	turn_num++;
 	printf("!!!! NOT CODED YET !!!!");
-	return((void *)turn_moves);
+	return(NULL);
 }
