@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   add_room.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
+/*   Updated: 2018/08/13 07:47:27 by rhohls           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/lemin.h"
-#include <stdio.h>
 
-void *add_room(char *str, t_lemin *lemin)
+void add_room(char *str, t_lemin *lemin)
 {
 	/* 
 	str_split ensure there is 3 (name, x, y)

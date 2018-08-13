@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathing_func.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/13 07:48:44 by rhohls            #+#    #+#             */
+/*   Updated: 2018/08/13 07:48:48 by rhohls           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
@@ -46,6 +56,7 @@ void		update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
 {
 	/* prob make return t_stack else can make char**(harder)*/
+	turn_num++;
 	printf("!!!! NOT CODED YET !!!!");
 	return((void *)turn_moves);
 }

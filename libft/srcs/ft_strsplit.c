@@ -60,21 +60,16 @@ char		**ft_strsplit(char const *str, char c)
 	if (!str)
 		return (NULL);
 	numstr = ft_num_str((char *)str, c);
-	printf("numstr - %i\n", numstr);
 	if (!(str_array = (char **)ft_memalloc(sizeof(char**) * (numstr + 1))))
 		return (NULL);
 	str_array[numstr + 1] = ((void *)0);
 	while (str[index[0]] == c)
 		index[0]++;
-	printf("should be zero %i\n", index[0]);
 	while (numstr-- > 0)
 	{
 		curr_strlen = ft_strlen_del((char *)(&str[index[0]]), c);
-		printf("str len for %i  is |%i|\n",numstr,curr_strlen );
 		str_array[index[1]] = ft_strsub(str, index[0], curr_strlen);
-		printf("strsubbed string |%s| from index %i to index %i\n");
 		index[0] += curr_strlen;
-		printf("incr index 0 \n");
 		while (str[index[0]] == c)
 			index[0]++;
 		index[1]++;

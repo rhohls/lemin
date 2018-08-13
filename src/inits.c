@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inits.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/13 07:48:07 by rhohls            #+#    #+#             */
+/*   Updated: 2018/08/13 07:48:10 by rhohls           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
@@ -24,6 +35,7 @@ t_stack		*init_shortest_path(void)
 
 	shortest_path = ft_stacknew();
 	shortest_path->length = INTMAX;
+	return (shortest_path);
 }
 
 void		init_lemin(t_lemin *lemin)

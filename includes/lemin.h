@@ -24,7 +24,7 @@ void		add_con_struct(char *room_name, t_lemin *lemin);
 void		add_connection(char *str, t_lemin *lemin);
 
 void		add_special_room(char *str, t_lemin *lemin, int fd);
-void		*add_room(char *str, t_lemin *lemin);
+void		add_room(char *str, t_lemin *lemin);
 
 void		delete_var(t_pathend *self);
 void		ft_del_chararr(char **array, int amt);
@@ -49,5 +49,8 @@ void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
 void		path_to_end(t_pathend *self, t_stack *shortest_path);
 void		run_new_branchs(t_pathend *self, t_stack *shortest_path);
 t_stack		*find_path(t_lemin* lemin);
+
+void		print_lemin(t_lemin *lemin);
+void		print_str_connection(t_stack *stack);
 
 #endif

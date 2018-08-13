@@ -12,7 +12,7 @@
 
 CHECK = checker
 NAME = lem-in
-TEST? = test.c
+TEST ?= test.c
 
 # Path
 SRC_PATH = ./src/
@@ -21,8 +21,7 @@ INC_PATH = ./includes/
 LIB_PATH = ./libft/
 
 # Files
-SRC_FILE =	inits.c			\
-			add_connection.c	\
+SRC_FILE =	add_connection.c	\
 			add_room.c		\
 			data_collection.c	\
 			data_free.c		\
@@ -35,7 +34,6 @@ SRC_FILE =	inits.c			\
 			print.c			\
 	
 
-
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_FILE))
@@ -46,7 +44,7 @@ NAME_MAIN = ./src_lemin/lemin.c
 
 #Compile
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc #$(CCFLAGS)
+CC = gcc $(CCFLAGS)
 
 LIBF = $(LIB_PATH)libft.a
 
@@ -55,18 +53,18 @@ all: $(CHECK) $(NAME)
 
 $(CHECK): $(OBJ) $(CHECK_MAIN)
 	@make -C./libft/
-	$(CC) -o $@ $(OBJ) $(CHECK_MAIN) $(LIBF)
+	@$(CC) -o $@ $(LIBF) $(OBJ) $(CHECK_MAIN) 
 
 $(NAME): $(OBJ) $(NAME_MAIN)
 	@make -C./libft/
-	@$(CC) -o $@ $(OBJ) $(NAME_MAIN) $(LIBF)
+	@$(CC)  -o $@ $(LIBF) $(OBJ) $(NAME_MAIN)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) -I$(INC_PATH) $(LIBF) -o $@ -c $<
+	@$(CC) -I$(INC_PATH) -o $@ -c $<
 
-test: $(OBJ)
+test: $(OBJ) 
 	@make -C./libft/
-	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBFT)
+	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBF)
 
 clean: cleanlib
 	/bin/rm -rf $(OBJ)
