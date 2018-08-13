@@ -25,6 +25,7 @@ t_pathend	*duplicate_var(t_pathend *self)
 
 t_stack		*ft_stackdup(t_stack *stack)
 {
+	printf("!!!! NOT CODED YET !!!!");
 	return(stack);
 }
 
@@ -55,7 +56,7 @@ void		update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 
 void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
 {
-	/* prob make return t_stack else can make char**(harder)*/
+	/* prob make return t_stack else can make char**(harder) */
 	turn_num++;
 	printf("!!!! NOT CODED YET !!!!");
 	return((void *)turn_moves);

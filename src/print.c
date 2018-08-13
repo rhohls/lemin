@@ -12,13 +12,13 @@
 
 #include "../includes/lemin.h"
 
-void print_str_stack(t_stack *stack)
+void	print_str_stack(t_stack *stack)
 {
 	t_list *node;
 
 	if (!stack || !stack->start)
 	{
-		printf("Nothing to print\n");
+		printf("\tNothing to print\n");
 		return ;
 	}
 	node = stack->start;
@@ -29,26 +29,25 @@ void print_str_stack(t_stack *stack)
 	}
 }
 
-void print_str_connection(t_stack *stack)
+void	print_str_connection(t_stack *con_list_stack)
 {
-	t_list  *node;
-	t_con   *con;
+	t_list  *connection;
 
-	if (!stack || !stack->start)
+	if (!con_list_stack || !con_list_stack->start)
 	{
-		printf("Nothing to print\n");
+		printf("\t\tNo connections\n");
 		return ;
 	}
-	node = stack->start;
-	while(node)
+	connection = con_list_stack->start;
+	// printf("just added |%s|\n", room_con->connect_list->start->content);
+	while(connection)
 	{
-		con = node->content;
-		printf("\t%s\n", (char *)(con->name));
-		node = node->next;
+		printf("\t\t%s\n", (char *)(connection->content));
+		connection = connection->next;
 	}
 }
 
-void print_char_starstar(char** str_list, int num_str)
+void	print_char_starstar(char** str_list, int num_str)
 {
 	int i;
 
@@ -60,7 +59,7 @@ void print_char_starstar(char** str_list, int num_str)
 	}
 }
 
-void print_turnmoves(t_stack *turn_moves)
+void	print_turnmoves(t_stack *turn_moves)
 {
 	t_list  *turn;
 	int     i;
@@ -78,38 +77,37 @@ void print_turnmoves(t_stack *turn_moves)
 	}
 }
 
-void print_connections(t_stack *conections)
+void	print_connections(t_stack *conections)
 {
-	t_list  *room;
+	t_list  *node;
 	t_con   *conn;
 
 	if (!conections || !conections->start)
 		return ;
-	room = conections->start;
-	while(room)
+	node = conections->start;
+	while(node)
 	{
-		conn = room->content;
-		printf("\tRoom name: \"%s\"\n", conn->name);
-		//print_char_starstar(conn->conections, conn->num_connections);
-		//print_str_stack(conn->connect_list);
-		room = room->next;
+		conn = node->content;
+		printf("\tRooms connected to: \"%s\"\n", conn->name);
+		print_str_connection(conn->connect_list);
+		node = node->next;
 	}
 }
 
 void    print_lemin(t_lemin *lemin)
 {
-	printf("\n~~~  LEMIN DETAILS  ~~~\n");
+	printf("\n\n~~~  LEMIN DETAILS  ~~~\n");
 	printf("Start |%s|\n", lemin->start);
 	printf("End   |%s|\n", lemin->end);
 	printf("Number of ants :%i:\n", lemin->num_ants);
-	printf("\nAll rooms:\n");
+	printf("\nAll room names:\n");
 	print_str_stack(lemin->room_list);
 
 	printf("\nTurn moves:\n");
 	print_turnmoves(lemin->turn_moves);
 	
 	printf("\nConnections:\n");
-	// print_connections(lemin->connections);
+	print_connections(lemin->connections);
 
 }
 

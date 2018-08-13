@@ -27,16 +27,16 @@ void play_game(t_lemin* lemin)
 	}
 }
 
-void main()
+int main(void)
 {
 	ft_putstr("I am lemin\n");
 	t_lemin	*lemin;
 
 	lemin = capture_data();
-	// error_check_data(data); //exit inside also use stderr etc.
+	print_lemin(lemin);
 	play_game(lemin);
 
-	print_moves(lemin);
-
-	return ;
+	print_turnmoves(lemin);
+	
+	return (1);
 }

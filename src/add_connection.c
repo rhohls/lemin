@@ -41,7 +41,7 @@ t_con *find_con(t_stack *connections, char *room_name)
 	while(node)
 	{
 		connect = node->content;
-		printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
+		//printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
 		if (ft_strcmp(connect->name, room_name) == 0)
 			return(connect);
 		node = node->next;
@@ -61,15 +61,9 @@ void add_connection(char *str, t_lemin *lemin)
 	add connection to room 2
 	free strsplit
 	*/
-	char **con_details;
-	t_con *room_con;
-
-
-	printf("printing all con names\n");
-	print_str_connection(lemin->connections);
-
-	ft_putstr("1\n");
-	printf("line in : %s\n", str);
+	char	**con_details;
+	t_con	*room_con;
+	t_list	*node;
 
 	if (!(con_details = ft_strsplit(str, '-')))
 	{
@@ -81,14 +75,18 @@ void add_connection(char *str, t_lemin *lemin)
 		printf("Issue with adding a connection (more than 2 arguments)\n");
 		exit(0);
 	}
-	printf("room1 |%s| room2 |%s|\n", con_details[0], con_details[2]);
-	ft_putstr("2\n");
+	// printf("room1 |%s| room2 |%s|\n", con_details[0], con_details[1]);
+
 	room_con = find_con(lemin->connections, con_details[0]);
-	ft_stackpush(room_con->connect_list,
-				ft_lstnew(con_details[0], ft_strlen(con_details[0])));
+	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]));
+	ft_stackpush(room_con->connect_list, node);
+	// printf("just added |%s|\n", room_con->connect_list->start->content);
+
 	room_con = find_con(lemin->connections, con_details[1]);
-	ft_stackpush(room_con->connect_list,
-				ft_lstnew(con_details[1], ft_strlen(con_details[1])));
+	node = ft_lstnew(con_details[0], ft_strlen(con_details[0]));
+	ft_stackpush(room_con->connect_list, node);
+	// printf("just added |%s|\n", room_con->connect_list->start->content);
+
 	// printf("detail addconection2\n %s \n", (char*)((t_con *)lemin->connections->start->content)->name);
 	// ft_del_chararr(con_details, 2);			
 }

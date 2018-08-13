@@ -52,5 +52,6 @@ t_stack		*find_path(t_lemin* lemin);
 
 void		print_lemin(t_lemin *lemin);
 void		print_str_connection(t_stack *stack);
+void		print_turnmoves(t_stack *turn_moves);
 
 #endif
