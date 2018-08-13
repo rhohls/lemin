@@ -25,7 +25,7 @@ void add_room(char *str, t_lemin *lemin)
 	room_details = ft_strsplit(str, ' ');
 	if (room_details[3] != NULL)
 	{
-		printf("Issue with deatials of room (more than 3 arguments)\n");
+		printf("Issue with deatials of room (Incorrect number of arguments)\n");
 		exit(0);
 	}
 	room_name = room_details[0];
@@ -34,7 +34,6 @@ void add_room(char *str, t_lemin *lemin)
 					ft_lstnew(room_name, ft_strlen(room_name)));
 	add_con_struct(room_name, lemin);
 	ft_del_chararr(room_details, 3);
-	// printf("detail addroom\n %p - %s \n", ((t_con *)lemin->connections->start->content)->name,(char*)((t_con *)lemin->connections->start->content)->name);
 
 }
 
@@ -48,6 +47,7 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		printf("bad gnl\n");
 		exit(0);		
 	}
+	printf("line spec:|%s|\n", line);
 	add_room(line, lemin);
 	room_name = (char *)(lemin->room_list->start->content);
 	if (ft_strcmp(str, "start") == 0)
@@ -59,5 +59,5 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		printf("Bad command: |##%s|", str);
 		exit(0);		
 	}
-	free(line);
+	// free(line);
 }

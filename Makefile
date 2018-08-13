@@ -62,7 +62,7 @@ $(NAME): $(OBJ) $(NAME_MAIN)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) -I$(INC_PATH) -o $@ -c $<
 
-test: $(OBJ) 
+test: $(OBJ)  $(TEST)
 	@make -C./libft/
 	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBF)
 

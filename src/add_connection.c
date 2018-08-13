@@ -27,9 +27,7 @@ void add_con_struct(char *room_name, t_lemin *lemin)
 	node = ft_lstnew(NULL, 0);
 	node->content = (void *)new;
 
-	ft_stackpush(lemin->connections, node);
-
-	// printf("detail add construct\n %p - %s \n", ((t_con *)lemin->connections->start->content)->name,(char*)((t_con *)lemin->connections->start->content)->name);
+	ft_stackpush(lemin->connections, node); 
 }
 
 t_con *find_con(t_stack *connections, char *room_name)
@@ -80,13 +78,11 @@ void add_connection(char *str, t_lemin *lemin)
 	room_con = find_con(lemin->connections, con_details[0]);
 	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]));
 	ft_stackpush(room_con->connect_list, node);
-	// printf("just added |%s|\n", room_con->connect_list->start->content);
 
 	room_con = find_con(lemin->connections, con_details[1]);
 	node = ft_lstnew(con_details[0], ft_strlen(con_details[0]));
 	ft_stackpush(room_con->connect_list, node);
-	// printf("just added |%s|\n", room_con->connect_list->start->content);
 
 	// printf("detail addconection2\n %s \n", (char*)((t_con *)lemin->connections->start->content)->name);
-	// ft_del_chararr(con_details, 2);			
+	ft_del_chararr(con_details, 2);			
 }

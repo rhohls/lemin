@@ -36,7 +36,7 @@ int main(void)
 	print_lemin(lemin);
 	play_game(lemin);
 
-	print_turnmoves(lemin);
-	
+	print_turnmoves(lemin->turn_moves);
+
 	return (1);
 }

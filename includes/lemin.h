@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-t_lemin		*capture_data(void);
+t_lemin		*capture_data(int fd);
 
 void		add_con_struct(char *room_name, t_lemin *lemin);
 void		add_connection(char *str, t_lemin *lemin);
@@ -48,10 +48,12 @@ void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
 
 void		path_to_end(t_pathend *self, t_stack *shortest_path);
 void		run_new_branchs(t_pathend *self, t_stack *shortest_path);
-t_stack		*find_path(t_lemin* lemin);
+void		find_path(t_lemin *lemin, t_ant *ant);
 
 void		print_lemin(t_lemin *lemin);
+void		print_ant_details(t_ant *ant);
 void		print_str_connection(t_stack *stack);
 void		print_turnmoves(t_stack *turn_moves);
+void		print_str_stack(t_stack *stack);
 
 #endif

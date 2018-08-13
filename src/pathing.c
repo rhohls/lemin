@@ -58,7 +58,7 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 	free (room_con_list);
 }
 
-t_stack *find_path(t_lemin* lemin)
+void find_path(t_lemin* lemin, t_ant *ant)
 {
 	t_stack *shortest_path;
 	t_pathend *self;
@@ -72,6 +72,8 @@ t_stack *find_path(t_lemin* lemin)
 		path_to_end(self, shortest_path);
 	}
 	delete_var(self);
-	return(shortest_path);
+	ant->turn_start = self->turn_start;
+	ant->path = shortest_path;
+	// return(shortest_path);
 }
 

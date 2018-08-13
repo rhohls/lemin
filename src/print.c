@@ -12,6 +12,15 @@
 
 #include "../includes/lemin.h"
 
+void	print_ant_details(t_ant *ant)
+{
+	printf("Number: %i\n", ant->number);
+	printf("Turn start: %i\n", ant->turn_start);
+	printf("Ant moves:\n");
+	print_str_stack(ant->path);
+}
+
+
 void	print_str_stack(t_stack *stack)
 {
 	t_list *node;
@@ -110,27 +119,3 @@ void    print_lemin(t_lemin *lemin)
 	print_connections(lemin->connections);
 
 }
-
-
-/*
-void print_all_moves(t_lemin* lemin)
-{
-	// for debug maybe?
-	t_list	*turn;
-	char	*move;
-	int 	i;
-
-	turn = lemin->turn_moves->start;
-	while (turn)
-	{
-		i = 0;
-		
-		while (i < turn->content_size) //check this
-		{
-			move = turn->content; //lol idk
-			printf("%s", move); // what about and number and L
-		}
-	}
-
-}
-*/

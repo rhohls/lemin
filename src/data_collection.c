@@ -20,26 +20,30 @@ int bad_command(char *str)
 		return (0);
 }
 
-t_lemin *capture_data(void)
+t_lemin *capture_data(int fd)
 {
 	t_lemin *lemin;
 	char	*line;
-	int		fd;
 
-	fd = 0;
 	lemin = (t_lemin *)malloc(sizeof(t_lemin));
 	init_lemin(lemin);
 	if (get_next_line(fd, &line) != 1)
 	{
-		printf("bad gnl return\n");
+		printf("Bad gnl return\n");
 		exit(0);
 	}
 	//atoi str cmp for 0
 	lemin->num_ants = ft_atoi(line);
+	if (lemin->num_ants == 0)
+	{
+		printf("Bad number of ants\n");
+		exit(0);		
+	}
 	free(line);
 
 	while(get_next_line(fd, &line) == 1)
 	{
+		printf("gnl line :|%s|\n", line);
 		if (bad_command(line))
 		{
 			printf("bad command: |%s|", line);
@@ -60,7 +64,7 @@ t_lemin *capture_data(void)
 			// its a room! (add it) - not sure if going to 
 			add_room(line, lemin);
 		}
-		free(line);
+		// free(line);
 	}
 	return(lemin);
 }
