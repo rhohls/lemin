@@ -32,6 +32,7 @@ SRC_FILE =	add_connection.c	\
 			pathing.c		\
 			pathing_func.c	\
 			print.c			\
+			stack_functions.c	\
 	
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
@@ -44,7 +45,7 @@ NAME_MAIN = ./src_lemin/lemin.c
 
 #Compile
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc #$(CCFLAGS)
+CC = gcc $(CCFLAGS)
 
 LIBF = $(LIB_PATH)libft.a
 

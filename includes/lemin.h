@@ -22,7 +22,7 @@ t_lemin		*capture_data(int fd);
 void		update_capture(t_lemin *lemin);
 
 void		add_con_struct(char *room_name, t_lemin *lemin);
-t_con		*find_con(t_stack *connections, char *room_name)
+t_con		*find_con(t_stack *connections, char *room_name);
 void		add_connection(char *str, t_lemin *lemin);
 
 void		add_special_room(char *str, t_lemin *lemin, int fd);
@@ -39,15 +39,14 @@ t_stack		*init_shortest_path(void);
 void		init_lemin(t_lemin *lemin);
 
 int			isinpath(char *room_name, t_stack *rooms_visted);
-int			is_occupied(char *room_name, char **ocupied_rooms);
+int			is_occupied(char *room_name, t_stack *ocupied_rooms);
 
 char		**ft_stacktochar(t_stack *stack);
 t_pathend	*duplicate_var(t_pathend *self);
-t_stack		*ft_stackdup(t_stack *stack);
 char		**get_char_con_list(char *room_name, void *all_connections, int *num_con);
 void		add_room_to_pathlist(char *room_name, void *path_list);
 void		update_shrtpth(void *curr_path_list, t_stack *shortest_path);
-void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
+t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
 
 void		path_to_end(t_pathend *self, t_stack *shortest_path);
 void		run_new_branchs(t_pathend *self, t_stack *shortest_path);
@@ -58,5 +57,8 @@ void		print_ant_details(t_ant *ant);
 void		print_str_connection(t_stack *stack);
 void		print_turnmoves(t_stack *turn_moves);
 void		print_str_stack(t_stack *stack);
+
+t_stack		*ft_stackdup(t_stack *stack);
+void		ft_stackdel(t_stack *stack);
 
 #endif

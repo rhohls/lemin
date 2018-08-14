@@ -25,19 +25,21 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 		delete_var(self);
 		return ;
 	}
-	add_room_to_pathlist(self->room_name, self->curr_path_list);
+	ft_stackpush(self->curr_path_list, 
+				ft_lstnew(self->room_name, ft_strlen(self->room_name)));
+	// add_room_to_pathlist(self->room_name, self->curr_path_list);
 
 	if (ft_strcmp(self->end, self->room_name) == 0)
 		update_shrtpth(self->curr_path_list, shortest_path);
 	else
 		run_new_branchs(self, shortest_path);
-	// delete_var(self);
+	delete_var(self);
 }
 
 void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 {
 	char	**room_con_list;
-	char	**ocupied_rooms; // t_stack?
+	t_stack	*ocupied_rooms; // t_stack?
 	int 	num_connections;
 	int 	i;
 	i=0;
@@ -55,7 +57,7 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 			path_to_end(duplicate_var(self), shortest_path);
 		i++;
 	}
-	free (room_con_list);
+	free(room_con_list);
 }
 
 void find_path(t_lemin* lemin, t_ant *ant)
@@ -71,7 +73,7 @@ void find_path(t_lemin* lemin, t_ant *ant)
 		self->turn_start++;
 		path_to_end(self, shortest_path);
 	}
-	// delete_var(self);
+	delete_var(self);
 	ant->turn_start = self->turn_start;
 	ant->path = shortest_path;
 	// return(shortest_path);

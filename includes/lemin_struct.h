@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lemin_struct.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/14 07:44:37 by rhohls            #+#    #+#             */
+/*   Updated: 2018/08/14 07:44:43 by rhohls           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LEMIN_STUCT_H
 # define LEMIN_STUCT_H
 
+# include "../libft/includes/libft.h"
 /* Will only need if printing 
 typedef struct	s_room
 {
@@ -37,7 +49,7 @@ typedef struct	s_connection
 {
 	char		*name;
 	char		**conections;
-	t_stack		*connect_list; //convert to send to path
+	t_stack		*connect_list;
 	int			num_connections;
 }				t_con;
 
@@ -45,9 +57,9 @@ typedef struct	s_connection
 ** turn moves = rooms ocupied that turn
 ** turn moves is a stack
 ** each link in list is a single turn
-** each link contains a char **
-** the content size is number of char *
-** each char* is the room name
+** each link contains a t_stack
+** each link in that stack is an occupied room
+** containing room name
 */
 
 typedef struct	s_pathend

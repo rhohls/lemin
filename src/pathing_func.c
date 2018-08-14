@@ -31,23 +31,6 @@ char		**ft_stacktochar(t_stack *stack)
 	return (ret);
 }
 
-t_pathend	*duplicate_var(t_pathend *self)
-{
-	/* duplicate all the variables */
-	printf("!!!! NOT CODED YET !!!!");
-	t_pathend *new;
-	new = self;
-	new = NULL;
-
-	return (new);
-}
-
-t_stack		*ft_stackdup(t_stack *stack)
-{
-	printf("!!!! NOT CODED YET !!!!");
-	return(stack);
-}
-
 char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 {
 	/* make char ** list of all rooms connected to current room (room name) */
@@ -61,21 +44,24 @@ char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 	return (ret);
 }
 
-void		add_room_to_pathlist(char *room_name, void *path_list)
-{
-	/* add the room to the path list */
-	printf("!!!! NOT CODED YET !!!!");
-}
-
 void		update_shrtpth(void *curr_path_list, t_stack *shortest_path)
 {
 	/* change shortest path to something else */
-	printf("!!!! NOT CODED YET !!!!");
+	ft_stackdel(shortest_path);
+	shortest_path = ft_stackdup(curr_path_list);
 }
 
-void		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
+t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
 {
-	/* prob make return t_stack else can make char**(harder) */
-	printf("!!!! NOT CODED YET !!!!");
-	return(NULL);
+	/* return t_list (stack?)  */
+	int i;
+	// t_stack *ret;
+	t_list	*node;
+
+	i = 0;
+	node = turn_moves->start;
+	while (i < turn_num && node)
+		node = node->next;
+
+	return((t_stack *)node);
 }

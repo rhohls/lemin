@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_bool.c                                        :+:      :+:    :+:   */
+/*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/13 07:48:17 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:48:20 by rhohls           ###   ########.fr       */
+/*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
+/*   Updated: 2018/08/14 08:01:40 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "../includes/lemin.h"
 
-int	is_occupied(char *room_name, t_stack *ocupied_rooms)
+t_stack		*ft_stackdup(t_stack *stack)
 {
-	/* check if room will be occupied on certain turn num */
-	if (ft_strinstack(room_name, ocupied_rooms) == 1)
-		return (1);
-	return (0);
+	printf("!!!! NOT CODED YET !!!!");
+	return(stack);
+}
+
+void		ft_stackdel(t_stack *stack)
+{
+	printf("!!!! NOT CODED YET !!!!");
+	stack = NULL;
 
 }
 
-int	isinpath(char *room_name, t_stack *rooms_visted)
-{
-	if (ft_strinstack(room_name, rooms_visted) == 1)
-		return (1);
-	return (0);
-}
