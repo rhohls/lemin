@@ -37,8 +37,13 @@ char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 	t_con	*connection;
 	char	**ret;
 
+	printf("getting connection\n");
 	connection = find_con(all_connections, room_name);
+	printf("got con\n");
 	ret = connection->conections;
+	printf("ret address %p \n", ret);
+
+	printf("string is 0 |%s|\n", ret[0]);
 	*num_con = connection->num_connections;
 		
 	return (ret);

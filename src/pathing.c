@@ -20,8 +20,9 @@
 
 void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
-	// dprintf(2, "now in roomname: %s  - address: %p\n",  self->room_name, self);
-	// dprintf(2, "rooms that have been visited at address %p\n", self->curr_path_list);
+	dprintf(2, "now in roomname: %s\n",  self->room_name);
+	// dprintf(2, "- address: %p\n", self);
+	dprintf(2, "rooms that have been visited at address \n");
 	print_str_stack(self->curr_path_list);
 	dprintf(2, "\tdone\n");
 	if ((self->curr_path_list->length + 1) > (shortest_path->length))
@@ -30,7 +31,7 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	//	delete_var(self);
 		return ;
 	}
-
+	printf("adding room\n");
 	add_room_to_pathlist(self->room_name, self->curr_path_list);
 	
 	// dprintf(2, "added room to list, curr rooms:\n");
@@ -38,14 +39,18 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	// dprintf(2, "\tdone\n\n");
 
 	// dprintf(2, "point - 2\n");
+	printf("checking end\n");
 	if (ft_strcmp(self->end, self->room_name) == 0)
 	{
-		printf("assgning new short path\n");
+		printf("at end room\n");
 		update_shrtpth(self->curr_path_list, shortest_path);
 	}
 	else
+	{
+		printf("not end running new braches\n");
 		run_new_branchs(self, shortest_path);
-	dprintf(2, "at end of path to end\n");
+	}
+	dprintf(2, "at end of path to end for [%s]\n", self->room_name);
 //	delete_var(self);
 }
 
@@ -57,20 +62,28 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 	int 	i;
 	i=0;
 
+	printf("getting char con list\n");
 	room_con_list = get_char_con_list(self->room_name, self->all_connections,
 									&num_connections);
+	printf("getiing ocupied\n");
 	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
 	self->turn_num += 1;
+	printf("num of connections: %i\n", num_connections);
+	printf("first in conn |%s|", room_con_list[0]);
+	printf("here\n");
+	
 	
 	while (i < num_connections)
 	{
+		printf("i: %i  - roomname %s \n", i, room_con_list[i]);
 		self->room_name = room_con_list[i];
 		if (!is_occupied(room_con_list[i], ocupied_rooms) && 
 			!(isinpath(room_con_list[i], self->curr_path_list)))
 			path_to_end(duplicate_var(self), shortest_path);
 		i++;
 	}
-	free(room_con_list);
+	// free(room_con_list);
+	room_con_list = NULL;
 }
 
 void find_path(t_lemin* lemin, t_ant *ant)
@@ -85,6 +98,7 @@ void find_path(t_lemin* lemin, t_ant *ant)
 		self->turn_num++;
 		self->turn_start++;
 		path_to_end(self, shortest_path);
+		printf("12345\n");
 	}
 //	delete_var(self);
 	ant->turn_start = self->turn_start;

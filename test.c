@@ -19,6 +19,7 @@ int main()
 	t_lemin *lemin;
 	lemin = capture_data(0);
 	print_lemin(lemin);
+	printf("lemin deatils done ----\n\n");
 
 	// t_con *connect = lemin->connections->start->content;
 	// char **list;

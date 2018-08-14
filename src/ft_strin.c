@@ -21,6 +21,7 @@ int	ft_strinstack(char *str, t_stack *stack_x)
 	lst = stack_x->start;
 	while (lst)
 	{
+		printf("string in stack, comparing |%s| with |%s| result: %i\n", str, lst->content, ft_strcmp(str, (char *)(lst->content)));
 		if (ft_strcmp(str, (char *)(lst->content)) == 0)
 			return (1);
 		lst = lst->next;
