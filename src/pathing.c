@@ -13,27 +13,40 @@
 #include "../includes/lemin.h"
 
 /*
-** Recuresive function
+** Recursive function
 ** Branches and runs down each branch to find the end
 ** updates the shortest path to reflect this.
 */
 
 void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
+	// dprintf(2, "now in roomname: %s  - address: %p\n",  self->room_name, self);
+	// dprintf(2, "rooms that have been visited at address %p\n", self->curr_path_list);
+	print_str_stack(self->curr_path_list);
+	dprintf(2, "\tdone\n");
 	if ((self->curr_path_list->length + 1) > (shortest_path->length))
 	{
-		delete_var(self);
+		printf("Path too long leaving \n");
+	//	delete_var(self);
 		return ;
 	}
-	ft_stackpush(self->curr_path_list, 
-				ft_lstnew(self->room_name, ft_strlen(self->room_name)));
-	// add_room_to_pathlist(self->room_name, self->curr_path_list);
 
+	add_room_to_pathlist(self->room_name, self->curr_path_list);
+	
+	// dprintf(2, "added room to list, curr rooms:\n");
+	// print_str_stack(self->curr_path_list);
+	// dprintf(2, "\tdone\n\n");
+
+	// dprintf(2, "point - 2\n");
 	if (ft_strcmp(self->end, self->room_name) == 0)
+	{
+		printf("assgning new short path\n");
 		update_shrtpth(self->curr_path_list, shortest_path);
+	}
 	else
 		run_new_branchs(self, shortest_path);
-	delete_var(self);
+	dprintf(2, "at end of path to end\n");
+//	delete_var(self);
 }
 
 void run_new_branchs(t_pathend *self, t_stack *shortest_path)
@@ -64,7 +77,7 @@ void find_path(t_lemin* lemin, t_ant *ant)
 {
 	t_stack *shortest_path;
 	t_pathend *self;
-	
+
 	self = init_self(lemin);
 	shortest_path = init_shortest_path();
 	while(shortest_path->start == NULL)
@@ -73,7 +86,7 @@ void find_path(t_lemin* lemin, t_ant *ant)
 		self->turn_start++;
 		path_to_end(self, shortest_path);
 	}
-	delete_var(self);
+//	delete_var(self);
 	ant->turn_start = self->turn_start;
 	ant->path = shortest_path;
 	// return(shortest_path);

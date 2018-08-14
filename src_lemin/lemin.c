@@ -12,17 +12,24 @@
 
 #include "../includes/lemin.h"
 
+t_ant *get_ant(t_lemin* lemin, int ant_num)
+{
+	if (ant_num < 0)
+		lemin->num_ants = ant_num;
+	return (NULL);		
+}
+
 void play_game(t_lemin* lemin)
 {
 	int		i;
-	t_ant	*ant;
+	// t_ant	*ant;
 	i = 0;
 
 	while (i < lemin->num_ants)
 	{
-		ant = get_ant(lemin, i);
-		ant->path = find_path(lemin);
-		update_moves(ant->path);
+		// ant = get_ant(lemin, i);
+		// ant->path = find_path(lemin);
+		// update_moves(ant->path);
 		i++;
 	}
 }
@@ -32,7 +39,7 @@ int main(void)
 	ft_putstr("I am lemin\n");
 	t_lemin	*lemin;
 
-	lemin = capture_data();
+	lemin = capture_data(0);
 	print_lemin(lemin);
 	play_game(lemin);
 

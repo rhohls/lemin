@@ -63,16 +63,18 @@ $(NAME): $(OBJ) $(NAME_MAIN)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) -I$(INC_PATH) -o $@ -c $<
 
-test: $(OBJ)  $(TEST)
+test: $(OBJ) $(TEST)
 	@make -C./libft/
 	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBF)
 
-clean: cleanlib
+clean: 
 	/bin/rm -rf $(OBJ)
 
-fclean: clean fcleanlib
+fclean: clean 
 	@rm -f $(CHECK)
 	@rm -f $(NAME)
+
+cleanall: flean fcleanlib
 
 cleanlib:
 	@make clean -C $(LIB_PATH)

@@ -19,10 +19,10 @@ t_pathend	*init_self(t_lemin* lemin)
 
 	self = (t_pathend *)malloc(sizeof(t_pathend));
 	self->end = lemin->end;
+	self->room_name = ft_strdup(lemin->start);
 	self->all_connections = lemin->connections;
 	self->turn_moves = lemin->turn_moves;
 	self->turn_start = -1;
-	self->room_name = NULL;
 	self->curr_path_list = ft_stacknew();
 	self->turn_num = -1;
 
