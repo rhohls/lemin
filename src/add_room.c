@@ -22,11 +22,11 @@ void add_room(char *str, t_lemin *lemin)
 	char **room_details;
 	char *room_name;
 
-	printf("Adding room from string : \"%s\"\n", str);
-	printf("start add 1 |%s| add %p\n", lemin->start, lemin->start);
+	// printf("Adding room from string : \"%s\"\n", str);
+	// printf("start add 1 |%s| add %p\n", lemin->start, lemin->start);
 	room_details = ft_strsplit(str, ' ');
-	printf("start add 2 |%s| add %p\n", lemin->start, lemin->start);
-	printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
+	// printf("start add 2 |%s| add %p\n", lemin->start, lemin->start);
+	// printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
 	
 	if (room_details[3] != NULL)
 	{
@@ -39,7 +39,7 @@ void add_room(char *str, t_lemin *lemin)
 					ft_lstnew(room_name, ft_strlen(room_name)));
 	add_con_struct(room_name, lemin);
 	ft_del_chararr(room_details, 3);
-	printf("start add 3 |%s|\n", lemin->start);
+	// printf("start add 3 |%s|\n", lemin->start);
 }
 
 void add_special_room(char *str, t_lemin *lemin, int fd)
@@ -55,21 +55,21 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 	printf("line spec:|%s|\n", line);
 	add_room(line, lemin);
 	room_name = (char *)(lemin->room_list->start->content);
-	printf("got room name :|%s| from linked list\n", room_name);
+	// printf("got room name :|%s| from linked list\n", room_name);
 	if (ft_strcmp(str, "start") == 0)
 	{
 		printf("adding to start with: %s\n", room_name);
-		lemin->start = room_name;
+		lemin->start = ft_strdup(room_name);
 	}
 	else if (ft_strcmp(str, "end") == 0)
 	{
-		lemin->end = room_name;
+		lemin->end = ft_strdup(room_name);
 	}
 	else
 	{
 		printf("Bad command: |##%s|", str);
 		exit(0);		
 	}
-	printf("special start |%s|\n", lemin->start);
+	// printf("special start |%s|\n", lemin->start);
 	// free(line);
 }

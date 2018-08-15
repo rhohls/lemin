@@ -34,7 +34,7 @@ int main()
 	
 	ant.number = 1;
 	ant.path = NULL;
-	ant.turn_start = 3;
+	ant.turn_start = 0;
 	find_path(lemin, &ant);
 	printf("\n-- Ant details --\n");
 	print_ant_details(&ant);

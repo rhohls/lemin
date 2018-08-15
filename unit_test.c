@@ -50,27 +50,35 @@ void stringin_test(t_stack *stack)
 		printf("fail test 8\n");
 }
 
-void print_str_stack(t_stack *stack)
-{
-    t_list *node;
+// void print_str_stack(t_stack *stack)
+// {
+//     t_list *node;
 
-    if (!stack)
-        return ;
-    node = stack->start;
-    while(node)
-    {
-        printf("\t%s\n", (char *)(node->content));
-        node = node->next;
-    }
-}
+//     if (!stack)
+//         return ;
+//     node = stack->start;
+//     while(node)
+//     {
+//         printf("\t%s\n", (char *)(node->content));
+//         node = node->next;
+//     }
+// }
 
 int main()
 {
 	printf("~~~ Doing tests ~~~\n");
 	t_stack *stack = make_stack();
-	stringin_test(stack);
-
+	// stringin_test(stack);
+	printf("Stack length: %zu   - address: %p\n",stack->length, stack);
 	printf("Printing strings\n");
 	print_str_stack(stack);
 
+	ft_stackrev(stack);
+
+	printf("Stack length: %zu   - address: %p\n",stack->length, stack);
+	printf("Printing strings\n");
+	print_str_stack(stack);
+	while(1)
+	{}
+	return (1) ;
 }

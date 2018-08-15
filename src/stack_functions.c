@@ -27,6 +27,7 @@ t_list	*ft_lstdup(t_list *node)
 	// printf("Copying |%s| with length : %lu",node->content, node->content_size);
 	ft_memcpy(new->content, node->content, node->content_size);
 	new->content_size = node->content_size;
+	new->next = NULL;
 	return (new);
 }
 
@@ -59,3 +60,24 @@ void		ft_stackdel(t_stack *stack)
 	stack = NULL;
 }
 
+void		ft_stackrev(t_stack *stack)
+{
+	t_stack	*new;
+	t_list	*node;
+	int		i;
+
+	i = stack->length;
+	if (!stack || !(stack->start))
+		return;
+	new = ft_stacknew();
+	node = stack->start;
+	while (i > 0 && node)
+	{
+		node = ft_stackpop(stack);
+		ft_stackpush(new, node);
+		i--;
+	}
+	stack->start = new->start;
+	stack->length = new->length;
+	free(new);
+}

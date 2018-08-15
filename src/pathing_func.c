@@ -89,3 +89,4 @@ void		add_room_to_pathlist(char *room_name, t_stack *path_list)
 	node = ft_lstnew(room_name, ft_strlen(room_name));
 	ft_stackpush(path_list, node);
 }
+

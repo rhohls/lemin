@@ -60,5 +60,6 @@ void		print_str_stack(t_stack *stack);
 
 t_stack		*ft_stackdup(t_stack *stack);
 void		ft_stackdel(t_stack *stack);
+void		ft_stackrev(t_stack *stack);
 
 #endif

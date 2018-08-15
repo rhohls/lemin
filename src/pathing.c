@@ -22,9 +22,9 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
 	dprintf(2, "now in roomname: %s\n",  self->room_name);
 	// dprintf(2, "- address: %p\n", self);
-	dprintf(2, "rooms that have been visited at address \n");
-	print_str_stack(self->curr_path_list);
-	dprintf(2, "\tdone\n");
+	// dprintf(2, "rooms that have been visited at address \n");
+	// print_str_stack(self->curr_path_list);
+	// dprintf(2, "\tdone\n");
 	if ((self->curr_path_list->length + 1) > (shortest_path->length))
 	{
 		printf("Path too long leaving \n");
@@ -39,7 +39,7 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	// dprintf(2, "\tdone\n\n");
 
 	// dprintf(2, "point - 2\n");
-	printf("checking end\n");
+	// printf("checking end\n");
 	if (ft_strcmp(self->end, self->room_name) == 0)
 	{
 		printf("at end room\n");
@@ -50,9 +50,9 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 		printf("not end running new braches\n");
 		run_new_branchs(self, shortest_path);
 	}
-	dprintf(2, "at end of path to end for [%s]\n", self->room_name);
-	printf("in pte path shortest path adress - %p\n", shortest_path);
-	printf("in pte path shortest path start adress - %p\n", (shortest_path)->start);
+	// dprintf(2, "at end of path to end for [%s]\n", self->room_name);
+	// printf("in pte path shortest path adress - %p\n", shortest_path);
+	// printf("in pte path shortest path start adress - %p\n", (shortest_path)->start);
 //	delete_var(self);
 }
 
@@ -64,21 +64,21 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 	int 	i;
 	i=0;
 
-	printf("getting char con list\n");
+	// printf("getting char con list\n");
 	room_con_list = get_char_con_list(self->room_name, self->all_connections,
 									&num_connections);
-	printf("getiing ocupied\n");
+	// printf("getiing ocupied\n");
 	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
 	self->turn_num += 1;
-	printf("num of connections: %i\n", num_connections);
-	printf("first in conn |%s|", room_con_list[0]);
-	printf("here\n");
+	// printf("num of connections: %i\n", num_connections);
+	// printf("first in conn |%s|", room_con_list[0]);
+	// printf("here\n");
 	
-	
+	printf("\n");
 	while (i < num_connections)
 	{
-		printf("in while loop shortest path adress - %p\n", shortest_path);
-		printf("in while loop shortest path start adress - %p\n", (shortest_path)->start);		
+		// printf("in while loop shortest path adress - %p\n", shortest_path);
+		// printf("in while loop shortest path start adress - %p\n", (shortest_path)->start);		
 		printf("i: %i  - roomname %s \n", i, room_con_list[i]);
 		self->room_name = room_con_list[i];
 		if (!is_occupied(room_con_list[i], ocupied_rooms) && 
@@ -104,11 +104,14 @@ void find_path(t_lemin* lemin, t_ant *ant)
 		path_to_end(self, shortest_path);
 		printf("\n printf ---- shorteset path --- %p\n", shortest_path->start);
 		print_str_stack(shortest_path);
-		printf("\n\n!!!!!!\t12345\t!!!!!!!!\n\n");
+		printf("\n\n!!!!!!\tStep in while loop\t!!!!!!!!\n\n");
 	}
 //	delete_var(self);
 	ant->turn_start = self->turn_start;
+	ft_stackrev(shortest_path);
 	ant->path = shortest_path;
+
+
 	// return(shortest_path);
 }
 
