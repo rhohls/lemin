@@ -31,7 +31,8 @@ void	add_turns(t_lemin *lemin, t_ant *ant)
 
 void	update_turn_moves(t_lemin *lemin, t_ant *ant)
 {
-	t_list *turn;
+	t_list	*turn;
+	t_list	*moves;
 	t_list	*node;
 	int		i;
 
@@ -44,5 +45,9 @@ void	update_turn_moves(t_lemin *lemin, t_ant *ant)
 	t_list *ant_move;
 	ant_move = ant->path->start;
 
+	while (ant_move)
+	{
+		moves = 
+	}
 	
 }
