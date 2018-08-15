@@ -60,7 +60,7 @@ char		**ft_strsplit(char const *str, char c)
 	if (!str)
 		return (NULL);
 	numstr = ft_num_str((char *)str, c);
-	if (!(str_array = (char **)ft_memalloc(sizeof(char**) * (numstr + 1))))
+	if (!(str_array = (char **)ft_memalloc(sizeof(char*) * (numstr + 1))))
 		return (NULL);
 	str_array[numstr + 1] = ((void *)0);
 	while (str[index[0]] == c)

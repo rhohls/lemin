@@ -62,7 +62,10 @@ void    ft_del_chararr(char **array, int amt)
 	while (i < amt)
 	{
 		if (array[i])
+		{
 			free(array[i]);
+			array[i] = NULL;
+		}
 		i++;
 	}
 	free(array);

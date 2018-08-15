@@ -39,10 +39,10 @@ t_con *find_con(t_stack *connections, char *room_name)
 	while(node)
 	{
 		connect = node->content;
-		printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
+		// printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
 		if (ft_strcmp(connect->name, room_name) == 0)
 		{
-			printf("returnning connection\n");
+			// printf("returnning connection\n");
 			return(connect);
 		}
 		node = node->next;

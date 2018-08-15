@@ -44,6 +44,7 @@ t_lemin *capture_data(int fd)
 	while(get_next_line(fd, &line) == 1)
 	{
 		printf("gnl line :|%s|\n", line);
+		printf("start |%s|\n", lemin->start);
 		if (bad_command(line))
 		{
 			printf("bad command: |%s|", line);
@@ -61,11 +62,14 @@ t_lemin *capture_data(int fd)
 		}
 		else if (line[0] != '#')
 		{
-			// its a room! (add it) - not sure if going to 
+			printf("adding from room :%s\n", line);
+			printf("not #1 |%s|\n", lemin->start);
 			add_room(line, lemin);
+			printf("not #2 |%s|\n", lemin->start);
 		}
 		// free(line);
 	}
+	printf("start room |%s|\n", lemin->start);
 	update_capture(lemin);
 	return(lemin);
 }

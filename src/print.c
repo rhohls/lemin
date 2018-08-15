@@ -111,6 +111,7 @@ void    print_lemin(t_lemin *lemin)
 	printf("Number of ants :%i:\n", lemin->num_ants);
 	printf("\nAll room names:\n");
 	print_str_stack(lemin->room_list);
+	printf("\tdone\n");
 
 	printf("\nTurn moves:\n");
 	print_turnmoves(lemin->turn_moves);
