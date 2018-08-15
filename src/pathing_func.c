@@ -49,11 +49,22 @@ char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 	return (ret);
 }
 
-void		update_shrtpth(void *curr_path_list, t_stack *shortest_path)
+void		update_shrtpth(t_stack *curr_path_list, t_stack *shortest_path)
 {
 	/* change shortest path to something else */
-	ft_stackdel(shortest_path);
-	shortest_path = ft_stackdup(curr_path_list);
+	t_stack *new;
+	if (curr_path_list->length < (shortest_path)->length)
+	{
+		printf("\n!!!!!making new shortest path here!!!!!\n");
+		//ft_stackdel(shortest_path);
+
+		new = ft_stackdup(curr_path_list);
+		shortest_path->start = new->start;
+		shortest_path->length = new->length;
+		free(new);
+		printf("new shortest path adress - %p\n", shortest_path);
+		printf("new shortest path start adress - %p\n", (shortest_path)->start);
+	}
 }
 
 t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num)
