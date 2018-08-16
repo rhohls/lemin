@@ -56,7 +56,7 @@ t_stack		*ft_stackdup(t_stack *stack)
 
 void		ft_stackdel(t_stack *stack)
 {
-	//printf("!!!! NOT CODED YET !!!!\n");
+	printf("!!!! NOT CODED YET !!!!\n");
 	stack = NULL;
 }
 
