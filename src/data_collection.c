@@ -32,7 +32,7 @@ t_lemin *capture_data(int fd)
 		printf("Bad gnl return\n");
 		exit(0);
 	}
-	//atoi str cmp for 0
+	//atoi str cmp for 0 !!!
 	lemin->num_ants = ft_atoi(line);
 	if (lemin->num_ants == 0)
 	{
@@ -64,7 +64,7 @@ t_lemin *capture_data(int fd)
 		}
 		else if (ft_strchr(line, '-'))
 		{
-			// break into new gnl loop
+			// break into new gnl loop -- do this !!!!
 			// maybe - cause all conns come after rooms
 			add_connection(line, lemin);
 		}

@@ -74,4 +74,28 @@ typedef struct	s_pathend
 	int			turn_num;
 }				t_pathend;
 
+typedef struct	s_vertex
+{
+	char		*name;
+	char		**char_connect;
+	t_stack		*stack_connect;
+	int			num_connections;
+	int			visited;
+}				t_vertex;
+
+typedef struct	s_graphpath
+{
+	t_stack		*graph;		//list of vertex
+	t_stack		*all_paths;	//list of paths
+}				t_graphpath;
+
+typedef t_stack	t_path;
+
+typedef struct	s_parallel
+{
+	int			max_parallel;
+	int			recurse_num;
+	t_graphpath	*best;
+}				t_parallel;
+
 #endif
