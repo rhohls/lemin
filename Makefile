@@ -75,7 +75,7 @@ fclean: clean
 	@rm -f $(CHECK)
 	@rm -f $(NAME)
 
-cleanall: flean fcleanlib
+cleanall: fclean fcleanlib
 
 cleanlib:
 	@make clean -C $(LIB_PATH)
@@ -83,6 +83,6 @@ cleanlib:
 fcleanlib:
 	@make fclean -C $(LIB_PATH)
 
-re : fclean all
+re : cleanall all
 
 .PHONY: re fclean clean all

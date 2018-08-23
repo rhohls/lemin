@@ -47,7 +47,7 @@ void    delete_var(t_pathend *self)
 	/* free only the following variables */
 
 	free(self->room_name);
-	ft_stackdel(self->curr_path_list);
+	ft_stackdel(&(self->curr_path_list));
 	free(self);
 	self = NULL;
 }

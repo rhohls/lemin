@@ -24,7 +24,6 @@ t_list	*ft_lstdup(t_list *node)
 		free(new);
 		return (NULL);
 	}
-	// printf("Copying |%s| with length : %lu",node->content, node->content_size);
 	ft_memcpy(new->content, node->content, node->content_size);
 	new->content_size = node->content_size;
 	new->next = NULL;
@@ -41,23 +40,29 @@ t_stack		*ft_stackdup(t_stack *stack)
 	node = stack->start;
 	while(node)
 	{
-		// printf("node str |%s|\n", node->content);
 		node_new = ft_lstdup(node);
-		// printf("new node str |%s|\n", node_new->content);
 		ft_stackqueue(new, node_new);
 		node = node->next;
 	}
-	// printf("duplicated the stack:\n");
-	// print_str_stack(stack);
-	// printf("The duplicate stack:\n");
-	// print_str_stack(new);	
 	return(new);
 }
 
-void		ft_stackdel(t_stack *stack)
+void		delete(void *content, size_t size)
 {
-	printf("!!!! NOT CODED YET !!!!\n");
-	stack = NULL;
+	printf("deleting %s", content);
+	if (size > 0)
+	{
+		free (content);
+	}
+}
+
+void		ft_stackdel(t_stack **stack)
+{
+	// printf("!!!! NOT CODED YET !!!!\n");
+	ft_lstdel(&((*stack)->start), delete);
+	printf("12\n");
+	free(*stack);
+	*stack = NULL;
 }
 
 void		ft_stackrev(t_stack *stack)

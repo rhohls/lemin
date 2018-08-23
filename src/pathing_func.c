@@ -37,33 +37,32 @@ char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 	t_con	*connection;
 	char	**ret;
 
-	printf("getting connection\n");
+	// printf("getting connection\n");
 	connection = find_con(all_connections, room_name);
-	printf("got con\n");
+	// printf("got con\n");
 	ret = connection->conections;
-	printf("ret address %p \n", ret);
-
-	printf("string is 0 |%s|\n", ret[0]);
+	// printf("ret address %p \n", ret);
+	// printf("string is 0 |%s|\n", ret[0]);
 	*num_con = connection->num_connections;
 		
 	return (ret);
 }
 
-void		update_shrtpth(t_stack *curr_path_list, t_stack *shortest_path)
+void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path)
 {
 	/* change shortest path to something else */
-	t_stack *new;
-	if (curr_path_list->length < (shortest_path)->length)
+	// t_stack *new;
+	if (curr_path_list->length < (*shortest_path)->length)
 	{
 		printf("\n!!!!!making new shortest path here!!!!!\n");
-		//ft_stackdel(shortest_path);
+		ft_stackdel(shortest_path);
 
-		new = ft_stackdup(curr_path_list);
-		shortest_path->start = new->start;
-		shortest_path->length = new->length;
-		free(new);
-		printf("new shortest path adress - %p\n", shortest_path);
-		printf("new shortest path start adress - %p\n", (shortest_path)->start);
+		*shortest_path = ft_stackdup(curr_path_list);
+		// shortest_path->start = new->start;
+		// shortest_path->length = new->length;
+		// free(new);
+		// printf("new shortest path adress - %p\n", shortest_path);
+		// printf("new shortest path start adress - %p\n", (shortest_path)->start);
 	}
 }
 

@@ -45,7 +45,7 @@ char		**ft_stacktochar(t_stack *stack);
 t_pathend	*duplicate_var(t_pathend *self);
 char		**get_char_con_list(char *room_name, void *all_connections, int *num_con);
 void		add_room_to_pathlist(char *room_name, t_stack *path_list);
-void		update_shrtpth(t_stack *curr_path_list, t_stack *shortest_path);
+void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path);
 t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
 
 void		path_to_end(t_pathend *self, t_stack *shortest_path);
@@ -59,7 +59,7 @@ void		print_turnmoves(t_stack *turn_moves);
 void		print_str_stack(t_stack *stack);
 
 t_stack		*ft_stackdup(t_stack *stack);
-void		ft_stackdel(t_stack *stack);
+void		ft_stackdel(t_stack **stack);
 void		ft_stackrev(t_stack *stack);
 
 void	print_moves(t_stack *moves, int num_ants);

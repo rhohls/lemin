@@ -11,15 +11,19 @@ t_stack *make_stack(void)
 	stack = ft_stacknew();
 
 	char test[] = "new string";
+	// char *test = ft_strdup("new string");
 	node = ft_lstnew((void *)test, ft_strlen(test));
 	ft_stackpush(stack, node);
 	char test1[] = "2nd str";
+	// char *test1 = ft_strdup("2nd str");
 	node = ft_lstnew((void *)test1, ft_strlen(test1));
 	ft_stackpush(stack, node);
 	char test2[] = "hello";
+	// char *test2 = ft_strdup("hello");
 	node = ft_lstnew((void *)test2, ft_strlen(test2));
 	ft_stackpush(stack, node);
 	char test3[] = "world wow";
+	// char *test3 = ft_strdup("world wow");
 	node = ft_lstnew((void *)test3, ft_strlen(test3));
 	ft_stackpush(stack, node);
 
@@ -78,7 +82,14 @@ int main()
 	printf("Stack length: %zu   - address: %p\n",stack->length, stack);
 	printf("Printing strings\n");
 	print_str_stack(stack);
+
+	ft_stackdel(&stack);
+	printf("Printing strings - post delete\n");
+	print_str_stack(stack);
+	printf("stack %p\n",stack);
+	
 	while(1)
 	{}
+	
 	return (1) ;
 }
