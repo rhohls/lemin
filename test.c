@@ -38,6 +38,10 @@ int main()
 	find_path(lemin, &ant);
 	printf("\n-- Ant details --\n");
 	print_ant_details(&ant);
+	printf("\nPrinting offcial path\n");
+	print_moves(ant.path, lemin->num_ants);
+	while(1)
+	{}
 	return (1);
 }
 

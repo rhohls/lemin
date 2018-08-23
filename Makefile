@@ -32,6 +32,7 @@ SRC_FILE =	add_connection.c	\
 			pathing.c		\
 			pathing_func.c	\
 			print.c			\
+			print_moves.c	\
 			stack_functions.c	\
 	
 

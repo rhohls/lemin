@@ -62,4 +62,6 @@ t_stack		*ft_stackdup(t_stack *stack);
 void		ft_stackdel(t_stack *stack);
 void		ft_stackrev(t_stack *stack);
 
+void	print_moves(t_stack *moves, int num_ants);
+
 #endif
