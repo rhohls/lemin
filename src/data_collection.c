@@ -41,13 +41,8 @@ t_lemin *capture_data(int fd)
 	}
 	free(line);
 
-	int i = 0;
 	while(get_next_line(fd, &line) == 1)
 	{
-		i = 0;
-		while (i < 1000)
-			i++;
-
 		printf("gnl line :|%s|\n", line);
 		// printf("start |%s|\n", lemin->start);
 		printf("room_list:\n");
@@ -75,7 +70,7 @@ t_lemin *capture_data(int fd)
 			add_room(line, lemin);
 			// printf("not #2 |%s|\n", lemin->start);
 		}
-		// free(line);
+		free(line);
 	}
 	// printf("start room |%s|\n", lemin->start);
 	update_capture(lemin);

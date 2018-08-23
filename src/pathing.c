@@ -18,9 +18,15 @@
 ** updates the shortest path to reflect this.
 */
 
+#include <unistd.h>
 void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
 	dprintf(2, "now in roomname: %s\n",  self->room_name);
+	// char *line;
+	// get_next_line(0, &line);
+	// if (line)
+	// 	free(line);
+	// sleep(5);
 	// dprintf(2, "- address: %p\n", self);
 	// dprintf(2, "rooms that have been visited at address \n");
 	// print_str_stack(self->curr_path_list);

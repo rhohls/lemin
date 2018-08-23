@@ -34,16 +34,46 @@ void play_game(t_lemin* lemin)
 	}
 }
 
-int main(void)
+#include <unistd.h>
+int main()
 {
-	ft_putstr("I am lemin\n");
-	t_lemin	*lemin;
+	t_ant	ant;
+	t_lemin *lemin;
+	char *line;
 
 	lemin = capture_data(0);
+	get_next_line(0, &line);
+	if (line)
+		free(line);
+
 	print_lemin(lemin);
-	play_game(lemin);
+	printf("lemin deatils done ----\n\n");
+	printf("all data captured?, check leaks?\n");
+	// sleep(3);
+	// t_con *connect = lemin->connections->start->content;
+	// char **list;
+	// int i = 0;
+	// list = connect->conections;
+	// while (i < connect->connect_list->length)
+	// {
+	// 	printf("room: %s\n", list[i]);
+	// 	i++;
+	// }	
+	
 
-	print_turnmoves(lemin->turn_moves);
-
+	get_next_line(0, &line);
+	if (line)
+		free(line);
+	
+	ant.number = 1;
+	ant.path = NULL;
+	ant.turn_start = 0;
+	find_path(lemin, &ant);
+	printf("\n-- Ant details --\n");
+	print_ant_details(&ant);
+	printf("\nPrinting offcial path\n");
+	print_moves(ant.path, lemin->num_ants);
+	while(1)
+	{}
 	return (1);
 }

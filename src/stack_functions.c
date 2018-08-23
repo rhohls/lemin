@@ -49,7 +49,6 @@ t_stack		*ft_stackdup(t_stack *stack)
 
 void		delete(void *content, size_t size)
 {
-	printf("deleting %s", content);
 	if (size > 0)
 	{
 		free (content);
@@ -60,7 +59,7 @@ void		ft_stackdel(t_stack **stack)
 {
 	// printf("!!!! NOT CODED YET !!!!\n");
 	ft_lstdel(&((*stack)->start), delete);
-	printf("12\n");
+	printf("deleted stack\n");
 	free(*stack);
 	*stack = NULL;
 }

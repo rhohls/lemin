@@ -71,5 +71,5 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		exit(0);		
 	}
 	// printf("special start |%s|\n", lemin->start);
-	// free(line);
+	free(line);
 }
