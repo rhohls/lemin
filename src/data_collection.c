@@ -70,8 +70,8 @@ t_lemin *capture_data(int fd)
 			add_room(line, lemin);
 			// printf("not #2 |%s|\n", lemin->start);
 		}
-		printf("check leaks\n\n");
-		sleep(1);
+		// printf("check leaks\n\n");
+		// sleep(1);
 		free(line);
 	}
 	update_capture(lemin);

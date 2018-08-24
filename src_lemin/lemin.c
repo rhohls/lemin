@@ -48,8 +48,8 @@ int main()
 
 	print_lemin(lemin);
 	printf("---- lemin deatils done ----\n\n");
-	printf("all data captured?, check leaks?\n");
-	sleep(5);
+	// printf("all data captured?, check leaks?\n");
+	// sleep(5);
 	// t_con *connect = lemin->connections->start->content;
 	// char **list;
 	// int i = 0;
@@ -73,7 +73,7 @@ int main()
 	print_ant_details(&ant);
 	printf("\nPrinting offcial path\n");
 	print_moves(ant.path, lemin->num_ants);
-	// while(1)
-	// {}
+	while(1)
+	{}
 	return (1);
 }

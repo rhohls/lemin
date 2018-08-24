@@ -54,10 +54,13 @@ void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path)
 	// t_stack *new;
 	if (curr_path_list->length < (*shortest_path)->length)
 	{
-		printf("\n!!!!!making new shortest path here!!!!!\n");
+		printf("\n!!making new shortest path here!!\nOld path is:\n");
+		print_str_stack(*shortest_path);
+		printf("\tdone\n");
 		ft_stackdel(shortest_path);
 		printf("deleted path\n");
 		*shortest_path = ft_stackdup(curr_path_list);
+	
 		// shortest_path->start = new->start;
 		// shortest_path->length = new->length;
 		// free(new);

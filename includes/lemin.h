@@ -29,7 +29,7 @@ void		add_connection(char *str, t_lemin *lemin);
 void		add_special_room(char *str, t_lemin *lemin, int fd);
 void		add_room(char *str, t_lemin *lemin);
 
-void		delete_var(t_pathend *self);
+void		delete_var(t_pathend **self);
 void		ft_del_chararr(char **array, int amt);
 
 int			ft_strinstack(char *str, t_stack *stack_x);

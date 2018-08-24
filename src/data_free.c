@@ -42,14 +42,14 @@ t_pathend	*duplicate_var(t_pathend *self)
 	return (new);
 }
 
-void    delete_var(t_pathend *self)
+void    delete_var(t_pathend **self)
 {
 	/* free only the following variables */
 
-	free(self->room_name);
-	ft_stackdel(&(self->curr_path_list));
-	free(self);
-	self = NULL;
+	free((*self)->room_name);
+	ft_stackdel(&((*self)->curr_path_list));
+	free(*self);
+	*self = NULL;
 }
 
 void    ft_del_chararr(char **array, int amt)
