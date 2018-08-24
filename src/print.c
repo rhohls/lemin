@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:57 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:49:00 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/24 14:51:14 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,9 @@ void    print_lemin(t_lemin *lemin)
 	printf("End   |%s|\n", lemin->end);
 	printf("Number of ants :%i:\n", lemin->num_ants);
 	printf("\nAll room names:\n");
+	// printf("first in list %p - %s\n", lemin->room_list->start, lemin->room_list->start->content);
 	print_str_stack(lemin->room_list);
-	printf("\tdone\n");
+	printf("\t-done-\n");
 
 	printf("\nTurn moves:\n");
 	print_turnmoves(lemin->turn_moves);

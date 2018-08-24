@@ -3,7 +3,8 @@ two 5 0
 ##start
 zero 1 2
 ##end
-one 9 2
+four 9 2
+one 2 4
 three 5 4
 zero-two
 zero-three

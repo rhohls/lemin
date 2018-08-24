@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_collection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:47:39 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/24 14:55:24 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,81 @@ int bad_command(char *str)
 		return (0);
 }
 
+void	ft_lstaddfront(t_list **alst, t_list *new_lst)
+{
+	t_list *node;
+
+	if(!alst || !new_lst)
+		return ;
+	if (*alst == NULL)
+	{
+		*alst = new_lst;
+		return;
+	}
+	node = *alst;
+	while(node->next != NULL)
+		node = node->next;
+	node->next = new_lst;
+}
+
+void	read_data(t_lemin *lemin, int fd)
+{
+	char	*line;
+	int		gnl_ret;
+	t_list	*temp;
+
+	while ((gnl_ret = get_next_line(fd, &line)) == 1)
+	{
+		// printf("add line: |%s|\n", line);
+		temp = ft_lstnew(line, ft_strlen(line) + 1);
+		// printf("stored content: |%s|\n", temp->content);
+		ft_lstaddfront(&(lemin->map_feed), temp);
+		free(line);
+	}
+
+	if (get_next_line(fd, &line) == -1)
+	{
+		printf("Error reading\n");
+		exit(0);
+	}
+}
+
+
 t_lemin *capture_data(int fd)
 {
 	t_lemin *lemin;
 	char	*line;
+	t_list	*node;
 
 	lemin = (t_lemin *)malloc(sizeof(t_lemin));
 	init_lemin(lemin);
-	if (get_next_line(fd, &line) != 1)
+
+	read_data(lemin, fd);
+	
+	node = lemin->map_feed;
+	while(node)
 	{
-		printf("Bad gnl return\n");
-		exit(0);
+		line = node->content;
+		printf("line: |%s|\n",line);
+		node = node->next;	
 	}
-	//atoi str cmp for 0 !!!
+
+	node = lemin->map_feed;
+	line = node->content;
+	node = node->next;	
+
+	printf("line is: %s\n", line);
 	lemin->num_ants = ft_atoi(line);
 	if (lemin->num_ants == 0)
 	{
-		printf("Bad number of ants\n");
+		ft_dprintf(2, "Error: Bad number of ants\n");
 		exit(0);		
 	}
-	free(line);
 
-	while(get_next_line(fd, &line) == 1)
+	while(node)
 	{
+		line = node->content;
 		printf("gnl line :|%s|\n", line);
-		// printf("start |%s|\n", lemin->start);
 		printf("room_list:\n");
 		print_str_stack(lemin->room_list);
 		printf("\tdone\n");
@@ -55,7 +105,7 @@ t_lemin *capture_data(int fd)
 		}
 		else if (line[0] == '#' && line[1] == '#')
 		{
-			add_special_room(line + 2, lemin, fd);
+			add_special_room(line + 2, lemin, &node);
 		}
 		else if (ft_strchr(line, '-'))
 		{
@@ -72,9 +122,14 @@ t_lemin *capture_data(int fd)
 		}
 		// printf("check leaks\n\n");
 		// sleep(1);
-		free(line);
+		// free(line);
+		node =node->next;
 	}
 	update_capture(lemin);
+
+	printf("room_list:\n");
+	print_str_stack(lemin->room_list);
+	printf("\tdone\n");
 	return(lemin);
 }
 

@@ -26,7 +26,7 @@ void		add_con_struct(char *room_name, t_lemin *lemin);
 t_con		*find_con(t_stack *connections, char *room_name);
 void		add_connection(char *str, t_lemin *lemin);
 
-void		add_special_room(char *str, t_lemin *lemin, int fd);
+void		add_special_room(char *str, t_lemin *lemin, t_list **node);
 void		add_room(char *str, t_lemin *lemin);
 
 void		delete_var(t_pathend **self);

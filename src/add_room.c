@@ -46,16 +46,18 @@ void add_room(char *str, t_lemin *lemin)
 	// printf("start add 3 |%s|\n", lemin->start);
 }
 
-void add_special_room(char *str, t_lemin *lemin, int fd)
+void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 {
 	char	*line;
 	char	*room_name;
 
-	if (get_next_line(fd, &line) != 1) // do i need this?
-	{
-		printf("bad gnl\n");
-		exit(0);		
-	}
+	// if (get_next_line(fd, &line) != 1) // do i need this?
+	// {
+	// 	printf("bad gnl\n");
+	// 	exit(0);		
+	// }
+	*node = (*node)->next;
+	line = (*node)->content;
 	printf("line spec:|%s|\n", line);
 	// ft_putendl(line);
 	// printf("^ the line string\n");
@@ -78,5 +80,6 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		exit(0);		
 	}
 	printf("!!special start |%s|\n", lemin->start);
-	free(line);
+	// free(line);
+
 }

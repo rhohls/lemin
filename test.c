@@ -58,5 +58,13 @@
 
 int main()
 {
-	ft_putendl(NULL);
+		char *line;
+		while (get_next_line(0, &line))
+		{	
+			printf("line sp:|%s|\n", line);
+			if (ft_strcmp(line, "exit") == 0)
+				break ;
+			free(line);
+		}
+		return (1);
 }

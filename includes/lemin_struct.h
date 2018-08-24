@@ -32,6 +32,7 @@ typedef struct	s_lemin
 	char		*start;
 	char		*end;
 	int			num_ants;
+	t_list		*map_feed;
 	t_stack		*room_list;
 	t_stack		*ant_list;
 	t_stack		*turn_moves;

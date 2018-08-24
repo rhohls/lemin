@@ -92,7 +92,8 @@ SRC_FILE =	ft_stacknew.c	\
 			ft_toupper.c	\
 			ft_whitespace.c	\
 			ft_printf.c		\
-	
+			ft_dprintf.c	\
+
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_FILE))

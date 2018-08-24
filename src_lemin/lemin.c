@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:56:17 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/07 09:00:43 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/24 15:00:00 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int main()
 {
 	t_ant	ant;
 	t_lemin *lemin;
-	char *line;
+	// char *line;
 
 	lemin = capture_data(0);
-	get_next_line(0, &line);
-	if (line)
-		free(line);
+
+	printf("main rooms:\n");
+	print_str_stack(lemin->room_list);
+	printf("\tdone\n");
 
 	print_lemin(lemin);
 	printf("---- lemin deatils done ----\n\n");
@@ -60,22 +61,29 @@ int main()
 	// 	i++;
 	// }	
 	
-
-	get_next_line(0, &line);
-	if (line)
-		free(line);
-	
 	ant.number = 1;
 	ant.path = NULL;
 	ant.turn_start = 0;
 	find_path(lemin, &ant);
-	if (ant.path == NULL)
+
+	if (ant.path == NULL || ant.path->start == NULL)
 	{
-		
+		ft_dprintf(2, "No path found\n");
+		exit(0);
 	}
 	printf("\n-- Ant details --\n");
 	print_ant_details(&ant);
-	printf("\nPrinting offcial path\n");
+	printf("\n~~!!  Printing offcial path  !!~~\n");
+
+	t_list *node;
+	node = lemin->map_feed;
+	while(node)
+	{
+		printf("%s\n",node->content);
+		node = node->next;	
+	}
+
+	ft_putstr("\n");
 	print_moves(ant.path, lemin->num_ants);
 	while(1)
 	{}

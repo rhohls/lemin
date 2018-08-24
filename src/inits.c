@@ -43,6 +43,7 @@ void		init_lemin(t_lemin *lemin)
 	lemin->start = NULL;
 	lemin->end = NULL;
 	lemin->num_ants = 0;
+	lemin->map_feed = NULL;
 	lemin->room_list = ft_stacknew();
 	lemin->ant_list = ft_stacknew();
 	lemin->turn_moves = ft_stacknew();
