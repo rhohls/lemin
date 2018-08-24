@@ -17,6 +17,7 @@
 # include "./lemin_struct.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include <unistd.h>
 
 t_lemin		*capture_data(int fd);
 void		update_capture(t_lemin *lemin);

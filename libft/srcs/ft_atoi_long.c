@@ -6,7 +6,7 @@
 /*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 14:25:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/07/17 07:03:05 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/21 14:01:54 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			ft_atoi_long(const char *str)
 	while (str[i])
 	{
 		if ((str[i] < '0') || (str[i] > '9'))
-			break ;
+			return (0);
 		ret *= 10;
 		ret += str[i] - 48;
 		i++;

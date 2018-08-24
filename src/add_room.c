@@ -26,7 +26,7 @@ void add_room(char *str, t_lemin *lemin)
 	// printf("start add 1 |%s| add %p\n", lemin->start, lemin->start);
 	room_details = ft_strsplit(str, ' ');
 	// printf("start add 2 |%s| add %p\n", lemin->start, lemin->start);
-	// printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
+	printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
 	
 	if (room_details[3] != NULL)
 	{
@@ -38,7 +38,11 @@ void add_room(char *str, t_lemin *lemin)
 	ft_stackpush(lemin->room_list,
 					ft_lstnew(room_name, ft_strlen(room_name)));
 	add_con_struct(room_name, lemin);
-	ft_del_chararr(room_details, 3);
+	ft_del_chararr(room_details, 4);
+	// char	*line;
+	// printf("check leak\n");
+	// get_next_line(0, &line);
+	// free(line);
 	// printf("start add 3 |%s|\n", lemin->start);
 }
 
@@ -53,7 +57,10 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		exit(0);		
 	}
 	printf("line spec:|%s|\n", line);
+	// ft_putendl(line);
+	// printf("^ the line string\n");
 	add_room(line, lemin);
+	// printf("post add room:|%s|\n", line);
 	room_name = (char *)(lemin->room_list->start->content);
 	// printf("got room name :|%s| from linked list\n", room_name);
 	if (ft_strcmp(str, "start") == 0)
@@ -70,6 +77,6 @@ void add_special_room(char *str, t_lemin *lemin, int fd)
 		printf("Bad command: |##%s|", str);
 		exit(0);		
 	}
-	// printf("special start |%s|\n", lemin->start);
+	printf("!!special start |%s|\n", lemin->start);
 	free(line);
 }

@@ -87,5 +87,5 @@ void add_connection(char *str, t_lemin *lemin)
 	ft_stackpush(room_con->connect_list, node);
 
 	// printf("detail addconection2\n %s \n", (char*)((t_con *)lemin->connections->start->content)->name);
-	// ft_del_chararr(con_details, 2);			
+	ft_del_chararr(con_details, 3);			
 }

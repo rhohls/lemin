@@ -6,7 +6,7 @@
 /*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 12:21:45 by rhohls            #+#    #+#             */
-/*   Updated: 2018/07/10 07:56:28 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/23 14:30:14 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,11 @@ int				gnl_read(const int fd, char **str)
 		if (read_ret == 0)
 		{
 			if (**str == '\0')
+			{
+				free(*str);
+				*str = NULL;
 				return (0);
+			}
 			break ;
 		}
 	}

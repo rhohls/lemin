@@ -111,4 +111,5 @@ char				*ft_strjoinfree(char *s1, char const *s2);
 
 int					ft_atoi_long(const char *str);
 int					ft_strcount(char **str);
+int					ft_printf(char *input, ...);
 #endif
