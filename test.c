@@ -58,11 +58,5 @@
 
 int main()
 {
-	char *line;
-	while (get_next_line(0, &line))
-	{	
-		printf("line sp:|%s|\n", line);
-		free(line);
-	}
-	return (1);
+	ft_putendl(NULL);
 }

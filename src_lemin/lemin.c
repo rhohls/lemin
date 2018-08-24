@@ -69,6 +69,10 @@ int main()
 	ant.path = NULL;
 	ant.turn_start = 0;
 	find_path(lemin, &ant);
+	if (ant.path == NULL)
+	{
+		
+	}
 	printf("\n-- Ant details --\n");
 	print_ant_details(&ant);
 	printf("\nPrinting offcial path\n");

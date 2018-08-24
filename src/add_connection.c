@@ -49,7 +49,7 @@ t_con *find_con(t_stack *connections, char *room_name)
 	}
 	ft_putstr("exiting cause:\n");
 	printf("No room |%s| found when trying to add connection\n", room_name);
-	exit(0);
+	exit(6);
 }
 
 void add_connection(char *str, t_lemin *lemin)
