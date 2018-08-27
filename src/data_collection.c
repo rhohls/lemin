@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 09:44:10 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:42:34 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ t_lemin *capture_data(int fd)
 	line = node->content;
 	node = node->next;	
 
-	printf("line is: %s\n", line);
 	lemin->num_ants = ft_atoi(line);
 	if (lemin->num_ants == 0)
 	{

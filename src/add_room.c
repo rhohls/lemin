@@ -6,11 +6,17 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:11:59 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:49:14 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
+
+void exit_redefine_special(void)
+{
+	ft_putstr("Error: Redefined start/end room");
+	exit(0);
+}
 
 void	room_error_check(char **room_details, char *str)
 {
@@ -79,11 +85,14 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 	// printf("got room name :|%s| from linked list\n", room_name);
 	if (ft_strcmp(str, "start") == 0)
 	{
-		printf("adding to start with: %s\n", room_name);
+		if (lemin->start != NULL)
+			exit_redefine_special();
 		lemin->start = ft_strdup(room_name);
 	}
 	else if (ft_strcmp(str, "end") == 0)
 	{
+		if (lemin->end != NULL)
+			exit_redefine_special();
 		lemin->end = ft_strdup(room_name);
 	}
 	else

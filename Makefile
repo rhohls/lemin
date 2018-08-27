@@ -6,11 +6,10 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/27 07:37:49 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/27 11:38:03 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CHECK = checker
 NAME = lem-in
 TEST ?= test.c
 
@@ -52,11 +51,7 @@ CC = gcc $(CCFLAGS)
 LIBF = $(LIB_PATH)libft.a
 
 #Make Commands
-all: $(CHECK) $(NAME)
-
-$(CHECK): $(OBJ) $(CHECK_MAIN)
-	@make -C./libft/
-	@$(CC) -o $@ $(LIBF) $(OBJ) $(CHECK_MAIN) 
+all: $(NAME)
 
 $(NAME): $(OBJ) $(NAME_MAIN)
 	@make -C./libft/

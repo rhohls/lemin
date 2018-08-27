@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:56:17 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 08:15:55 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:53:00 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,15 @@ t_ant *get_ant(t_lemin* lemin, int ant_num)
 	return (NULL);		
 }
 
-void play_game(t_lemin* lemin)
+void	post_data_collect(t_lemin *lemin)
 {
-	int		i;
-	// t_ant	*ant;
-	i = 0;
-
-	while (i < lemin->num_ants)
-	{
-		// ant = get_ant(lemin, i);
-		// ant->path = find_path(lemin);
-		// update_moves(ant->path);
-		i++;
-	}
+	if (lemin->start == NULL)
+		ft_putstr("Error: missing start room\n");
+	else if (lemin->end == NULL)
+		ft_putstr("Error: missing end room\n");
+	else
+		return ;
+	exit(0);
 }
 
 #include <unistd.h>
@@ -42,6 +38,8 @@ int main()
 	// char *line;
 
 	lemin = capture_data(0);
+	
+	post_data_collect(lemin);
 
 	printf("main rooms:\n");
 	print_str_stack(lemin->room_list);
@@ -64,7 +62,7 @@ int main()
 	}
 	printf("\n-- Ant details --\n");
 	print_ant_details(&ant);
-	printf("\n~~!!  Printing offcial path  !!~~\n");
+	printf("\n-~~~!!  Printing offcial info  !!~~~-\n\n");
 
 	// t_list *node;
 	// node = lemin->map_feed;
@@ -85,10 +83,18 @@ int main()
 	free(node->content);
 	free(node);
 	assign_path(lemin, ant.path);
-	printf("assigned paths\n");
+	// printf("assigned paths\n");
 	
+	
+	node = lemin->map_feed;
+	while(node)
+	{
+		ft_putendl(node->content);
+		// printf("line: |%s|\n",line);
+		node = node->next;	
+	}
+	ft_putchar('\n');
 	print_ant_moves(lemin);
-	
 	
 	return (1);
 }
