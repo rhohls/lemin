@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:57 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/24 14:51:14 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 08:12:49 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_ant_details(t_ant *ant)
 {
 	printf("Number: %i\n", ant->number);
-	printf("Turn start: %i\n", ant->turn_start);
+	printf("Turn start: %i\n", ant->turn_num);
 	printf("Ant moves:\n");
 	print_str_stack(ant->path);
 }

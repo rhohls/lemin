@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathing_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:44 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:48:48 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:13:14 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path)
 	// t_stack *new;
 	if (curr_path_list->length < (*shortest_path)->length)
 	{
-		printf("\n!!making new shortest path here!!\nOld path is:\n");
-		print_str_stack(*shortest_path);
-		printf("\tdone\n");
+		// printf("\n!!making new shortest path here!!\nOld path is:\n");
+		// print_str_stack(*shortest_path);
+		// printf("\tdone\n");
 		ft_stackdel(shortest_path);
-		printf("deleted path\n");
+		// printf("deleted path\n");
 		*shortest_path = ft_stackdup(curr_path_list);
 	
 		// shortest_path->start = new->start;

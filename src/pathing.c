@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pathing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:48:30 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:12:51 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <unistd.h>
 void path_to_end(t_pathend *self, t_stack *shortest_path)
 {
-	dprintf(2, "now in roomname: %s\n",  self->room_name);
+	// dprintf(2, "now in roomname: %s\n",  self->room_name);
 	// printf("check leaks\n\n");
 	// sleep(3);
 
@@ -32,7 +32,7 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 
 	if ((self->curr_path_list->length + 1) > (shortest_path->length))
 	{
-		printf("Path too long leaving \n");
+		// printf("Path too long leaving \n");
 		delete_var(&self);
 		return ;
 	}
@@ -47,13 +47,13 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	{
 		// printf("at end room\n");
 		update_shrtpth(self->curr_path_list, &shortest_path);
-		printf("Made new path, it is:\n");
-		print_str_stack(shortest_path);
-		printf("\tdone\n");
+		// printf("Made new path, it is:\n");
+		// print_str_stack(shortest_path);
+		// printf("\tdone\n");
 	}
 	else
 	{
-		printf("not end running new braches\n");
+		// printf("not end running new braches\n");
 		run_new_branchs(self, shortest_path);
 	}
 	// dprintf(2, "at end of path to end for [%s]\n", self->room_name);
@@ -115,13 +115,13 @@ void find_path(t_lemin* lemin, t_ant *ant)
 	
 		path_to_end(self, shortest_path);
 
-		printf("\n printf ---- shorteset path --- %p\n", shortest_path->start);
-		print_str_stack(shortest_path);
+		// printf("\n printf ---- shorteset path --- %p\n", shortest_path->start);
+		// print_str_stack(shortest_path);
 		// printf("\n\n!!!!!!\tStep in while loop\t!!!!!!!!\n\n");
 		break ;
 	}
 	// delete_var(&self);
-	ant->turn_start = self->turn_start;
+	ant->turn_num = self->turn_num;
 	ft_stackrev(shortest_path);
 	ant->path = shortest_path;
 

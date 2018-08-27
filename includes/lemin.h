@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/07 10:15:50 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 07:34:14 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ t_stack		*ft_stackdup(t_stack *stack);
 void		ft_stackdel(t_stack **stack);
 void		ft_stackrev(t_stack *stack);
 
-void	print_moves(t_stack *moves, int num_ants);
-
+void		print_moves(t_stack *moves, int num_ants);
+void		assign_path(t_lemin *lemin, t_stack *path);
+void		print_ant_moves(t_lemin *lemin);
 #endif

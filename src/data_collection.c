@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/24 14:55:24 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 09:44:10 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_lemin *capture_data(int fd)
 		printf("line: |%s|\n",line);
 		node = node->next;	
 	}
+	printf("\n");
 
 	node = lemin->map_feed;
 	line = node->content;
@@ -94,13 +95,13 @@ t_lemin *capture_data(int fd)
 	while(node)
 	{
 		line = node->content;
-		printf("gnl line :|%s|\n", line);
-		printf("room_list:\n");
-		print_str_stack(lemin->room_list);
-		printf("\tdone\n");
+		// printf("gnl line :|%s|\n", line);
+		// printf("room_list:\n");
+		// print_str_stack(lemin->room_list);
+		// printf("\tdone\n");
 		if (bad_command(line))
 		{
-			printf("bad command: |%s|", line);
+			printf("bad command: |%s|", line); //see pdf ignore it.
 			exit(0);
 		}
 		else if (line[0] == '#' && line[1] == '#')
@@ -115,7 +116,7 @@ t_lemin *capture_data(int fd)
 		}
 		else if (line[0] != '#')
 		{
-			printf("adding from room :%s\n", line);
+			// printf("adding from room :%s\n", line);
 			// printf("not #1 |%s|\n", lemin->start);
 			add_room(line, lemin);
 			// printf("not #2 |%s|\n", lemin->start);
@@ -127,9 +128,9 @@ t_lemin *capture_data(int fd)
 	}
 	update_capture(lemin);
 
-	printf("room_list:\n");
-	print_str_stack(lemin->room_list);
-	printf("\tdone\n");
+	// printf("room_list:\n");
+	// print_str_stack(lemin->room_list);
+	// printf("\tdone\n");
 	return(lemin);
 }
 

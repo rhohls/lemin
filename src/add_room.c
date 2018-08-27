@@ -3,22 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   add_room.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:47:27 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 11:11:59 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-void add_room(char *str, t_lemin *lemin)
+void	room_error_check(char **room_details, char *str)
 {
-	/* 
-	str_split ensure there is 3 (name, x, y)
-	add to room list
-	and coonection list
-	*/
+	int error;
+	
+	error = 0;
+	if (room_details[3] != NULL)
+		error = 1;
+	else if ((ft_atoi_long(room_details[1]) == 0) && (ft_strcmp(room_details[1], "0\0") != 0))
+		error = 2;
+	else if ((ft_atoi_long(room_details[2]) == 0) && (ft_strcmp(room_details[2], "0\0") != 0))
+		error = 3;
+		
+	if (error != 0)
+	{
+		ft_printf("Error: Issue with line\nLine: \"%s\"\n", str);
+		exit(0);
+	}
+	
+}
+
+void	add_room(char *str, t_lemin *lemin)
+{
 	char **room_details;
 	char *room_name;
 
@@ -26,13 +41,10 @@ void add_room(char *str, t_lemin *lemin)
 	// printf("start add 1 |%s| add %p\n", lemin->start, lemin->start);
 	room_details = ft_strsplit(str, ' ');
 	// printf("start add 2 |%s| add %p\n", lemin->start, lemin->start);
-	printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
-	
-	if (room_details[3] != NULL)
-	{
-		printf("Issue with deatials of room (Incorrect number of arguments)\n");
-		exit(0);
-	}
+	// printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
+
+	room_error_check(room_details, str);
+
 	room_name = room_details[0];
 	// check its name not already in list
 	ft_stackpush(lemin->room_list,
@@ -58,7 +70,7 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 	// }
 	*node = (*node)->next;
 	line = (*node)->content;
-	printf("line spec:|%s|\n", line);
+	// printf("line spec:|%s|\n", line);
 	// ft_putendl(line);
 	// printf("^ the line string\n");
 	add_room(line, lemin);

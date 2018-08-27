@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rhohls <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/07/17 13:12:15 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/27 07:37:49 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_FILE =	add_connection.c	\
 			print.c			\
 			print_moves.c	\
 			stack_functions.c	\
+			ant_moves.c		\
 	
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)

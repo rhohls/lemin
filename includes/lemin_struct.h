@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 07:44:37 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/14 07:44:43 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/27 07:08:47 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct	s_ant
 {
 	int			number;
 	t_stack		*path;
-	int			turn_start;
+	int			turn_num;
 }				t_ant;
 
 typedef struct	s_connection
