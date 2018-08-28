@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:49:14 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 11:06:02 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ void	room_error_check(char **room_details, char *str)
 	int error;
 	
 	error = 0;
-	if (room_details[3] != NULL)
-		error = 1;
+	
+	if (room_details[0] == NULL || room_details[1] == NULL || room_details[2] == NULL)
+		error = 4;	
 	else if ((ft_atoi_long(room_details[1]) == 0) && (ft_strcmp(room_details[1], "0\0") != 0))
 		error = 2;
 	else if ((ft_atoi_long(room_details[2]) == 0) && (ft_strcmp(room_details[2], "0\0") != 0))
 		error = 3;
-		
+
+	else if (room_details[3] != NULL)
+		error = 1;		
 	if (error != 0)
 	{
 		ft_printf("Error: Issue with line\nLine: \"%s\"\n", str);
@@ -48,6 +51,17 @@ void	add_room(char *str, t_lemin *lemin)
 	room_details = ft_strsplit(str, ' ');
 	// printf("start add 2 |%s| add %p\n", lemin->start, lemin->start);
 	// printf("Adding room from string : \"%s\" with room name |%s|\n", str, room_details[0]);
+	// char *print;
+	// printf("str: %s\n", str);
+	// int i = 0;
+	// while (i < 2)
+	// {	
+	// 	print = room_details[i];
+	// 	printf("det : %s\n", print);
+	// 	i++;
+	// }
+	
+	// printf("err\n");
 
 	room_error_check(room_details, str);
 
@@ -68,14 +82,21 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 {
 	char	*line;
 	char	*room_name;
+	
 
 	// if (get_next_line(fd, &line) != 1) // do i need this?
 	// {
 	// 	printf("bad gnl\n");
 	// 	exit(0);		
 	// }
+
+	
+	if (ft_strcmp(str, "start") != 0 && ft_strcmp(str, "end") != 0)
+		return ;
+		
 	*node = (*node)->next;
-	line = (*node)->content;
+	line = (*node)->content;	
+
 	// printf("line spec:|%s|\n", line);
 	// ft_putendl(line);
 	// printf("^ the line string\n");
@@ -97,10 +118,10 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 	}
 	else
 	{
-		printf("Bad command: |##%s|", str);
-		exit(0);		
+		// printf("Bad command: |##%s|", str);
+		// exit(0);		
 	}
-	printf("!!special start |%s|\n", lemin->start);
+	// printf("!!special start |%s|\n", lemin->start);
 	// free(line);
 
 }

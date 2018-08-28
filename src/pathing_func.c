@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:44 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:13:14 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 09:59:41 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,23 @@ char		**get_char_con_list(char *room_name, void *all_connections, int *num_con)
 void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path)
 {
 	/* change shortest path to something else */
-	// t_stack *new;
+	t_stack *new;
 	if (curr_path_list->length < (*shortest_path)->length)
 	{
-		// printf("\n!!making new shortest path here!!\nOld path is:\n");
+		// printf("old shortest path start adress - %p\n", (*shortest_path)->start);
+		// printf("\n\x1B[1;32m\t\t!!making new shortest path here!! Old path length %zu and rooms:\033[0m\n", (*shortest_path)->length);
 		// print_str_stack(*shortest_path);
 		// printf("\tdone\n");
-		ft_stackdel(shortest_path);
+		// ft_stackdel(shortest_path);
+		ft_lstdel(&((*shortest_path)->start), delete);
 		// printf("deleted path\n");
-		*shortest_path = ft_stackdup(curr_path_list);
+		new = ft_stackdup(curr_path_list);
 	
-		// shortest_path->start = new->start;
-		// shortest_path->length = new->length;
-		// free(new);
+		(*shortest_path)->start = new->start;
+		(*shortest_path)->length = new->length;
+		free(new);
 		// printf("new shortest path adress - %p\n", shortest_path);
-		// printf("new shortest path start adress - %p\n", (shortest_path)->start);
+		// printf("new shortest path start adress - %p\n", (*shortest_path)->start);
 	}
 }
 

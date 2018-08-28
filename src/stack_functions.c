@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/14 08:01:40 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 08:24:57 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,14 @@ void		delete(void *content, size_t size)
 
 void		ft_stackdel(t_stack **stack)
 {
-	// printf("deleting stack\n");
-	ft_lstdel(&((*stack)->start), delete);
-	// printf("deleted stack\n");
-	free(*stack);
-	*stack = NULL;
+	if (stack && *stack)
+	{
+		// printf("deleting stack\n");
+		ft_lstdel(&((*stack)->start), delete);
+		// printf("deleted stack\n");
+		free(*stack);
+		*stack = NULL;
+	}
 }
 
 void		ft_stackrev(t_stack *stack)

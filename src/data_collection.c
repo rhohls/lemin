@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:42:34 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 11:06:00 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	read_data(t_lemin *lemin, int fd)
 	char	*line;
 	int		gnl_ret;
 	t_list	*temp;
+	
+	// printf("start read data  %p\n", lemin->map_feed);
 
 	while ((gnl_ret = get_next_line(fd, &line)) == 1)
 	{
@@ -51,10 +53,14 @@ void	read_data(t_lemin *lemin, int fd)
 		ft_lstaddfront(&(lemin->map_feed), temp);
 		free(line);
 	}
-
-	if (get_next_line(fd, &line) == -1)
+	if (gnl_ret == -1)
 	{
-		printf("Error reading\n");
+		printf("Error reading data\n");
+		exit(0);
+	}
+	else if (gnl_ret == 0 && (lemin->map_feed == NULL))
+	{
+		printf("Error reading data\n");
 		exit(0);
 	}
 }
@@ -72,13 +78,13 @@ t_lemin *capture_data(int fd)
 	read_data(lemin, fd);
 	
 	node = lemin->map_feed;
-	while(node)
-	{
-		line = node->content;
-		printf("line: |%s|\n",line);
-		node = node->next;	
-	}
-	printf("\n");
+	// while(node)
+	// {
+	// 	line = node->content;
+	// 	printf("line: |%s|\n",line);
+	// 	node = node->next;	
+	// }
+	// printf("\n");
 
 	node = lemin->map_feed;
 	line = node->content;
@@ -87,7 +93,7 @@ t_lemin *capture_data(int fd)
 	lemin->num_ants = ft_atoi(line);
 	if (lemin->num_ants == 0)
 	{
-		ft_dprintf(2, "Error: Bad number of ants\n");
+		ft_dprintf(1, "Error: Bad number of ants\n");
 		exit(0);		
 	}
 

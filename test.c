@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:52:16 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:57:19 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 07:32:13 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,15 @@
 
 int main()
 {
-		char *line;
-		while (get_next_line(0, &line))
-		{	
-			printf("line sp:|%s|\n", line);
-			if (ft_strcmp(line, "exit") == 0)
-				break ;
-			free(line);
-		}
-		return (1);
+	char *line;
+	int gnl;
+	while ((gnl = get_next_line(0, &line)))
+	{	
+		printf("line sp:|%s|\n", line);
+		if (ft_strcmp(line, "exit") == 0)
+			break ;
+		free(line);
+	}
+	printf("gnl return :%d\n", gnl);
+	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/27 11:38:03 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/28 11:58:14 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,21 +56,24 @@ all: $(NAME)
 $(NAME): $(OBJ) $(NAME_MAIN)
 	@make -C./libft/
 	@$(CC)  -o $@ $(LIBF) $(OBJ) $(NAME_MAIN)
+	@echo "\x1b[32m"Finished making $@"\x1b[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) -I$(INC_PATH) -o $@ -c $<
+	@echo Making "\x1b[35m"$@"\x1b[0m"
 
 test: $(OBJ) $(TEST)
 	@make -C./libft/
 	@$(CC) -o $@ $(OBJ) $(TEST) $(LIBF)
 
 clean: 
-	/bin/rm -rf $(OBJ)
+	@/bin/rm -rf $(OBJ)
+	@echo "\x1b[31m"Removed all $(NAME) objects"\x1b[0m"
 
 fclean: clean 
-	@rm -f $(CHECK)
 	@rm -f $(NAME)
-
+	@echo "\x1b[31m"Removed $(NAME)"\x1b[0m"
+	
 cleanall: fclean fcleanlib
 
 cleanlib:

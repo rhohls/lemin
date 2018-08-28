@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rhohls <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/01 07:07:02 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/21 14:01:36 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/28 12:17:33 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,11 +111,11 @@ $(NAME): $(OBJ)
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
 	@$(CC) -I$(INC_PATH) -o $@ -c $<
-	@echo Making "\x1b[35m"$@"\x1b[0m"
+	@echo "\x1b[2m"Making "\x1b[35m"$@"\x1b[0m"
 
 clean:
 	@/bin/rm -f $(OBJ)
-	@echo "\x1b[31m"Removed all objects"\x1b[0m"
+	@echo "\x1b[31m"Removed all $(NAME) objects"\x1b[0m"
 
 fclean: clean
 	@/bin/rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 11:12:51 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 13:34:34 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 */
 
 #include <unistd.h>
-void path_to_end(t_pathend *self, t_stack *shortest_path)
+int path_to_end(t_pathend *self, t_stack *shortest_path, int stop)
 {
+	int res;
 	// dprintf(2, "now in roomname: %s\n",  self->room_name);
 	// printf("check leaks\n\n");
 	// sleep(3);
@@ -34,7 +35,7 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 	{
 		// printf("Path too long leaving \n");
 		delete_var(&self);
-		return ;
+		return (0);
 	}
 	// printf("adding room\n");
 	add_room_to_pathlist(self->room_name, self->curr_path_list);
@@ -50,25 +51,30 @@ void path_to_end(t_pathend *self, t_stack *shortest_path)
 		// printf("Made new path, it is:\n");
 		// print_str_stack(shortest_path);
 		// printf("\tdone\n");
+		delete_var(&self);
+		return (1);
 	}
 	else
 	{
 		// printf("not end running new braches\n");
-		run_new_branchs(self, shortest_path);
+		 res = run_new_branchs(self, shortest_path, stop);
 	}
 	// dprintf(2, "at end of path to end for [%s]\n", self->room_name);
 	// printf("in pte path shortest path adress - %p\n", shortest_path);
 	// printf("in pte path shortest path start adress - %p\n", (shortest_path)->start);
 	delete_var(&self);
+	return (res);
+	// printf("in pte path shortest path start adress - %p\n", (shortest_path)->start);
 }
 
-void run_new_branchs(t_pathend *self, t_stack *shortest_path)
+int run_new_branchs(t_pathend *self, t_stack *shortest_path, int stop)
 {
 	char	**room_con_list;
 	t_stack	*ocupied_rooms;
 	int 	num_connections;
 	int 	i;
 	i=0;
+	int		res;
 
 	// printf("getting char con list\n");
 	room_con_list = get_char_con_list(self->room_name, self->all_connections,
@@ -91,11 +97,17 @@ void run_new_branchs(t_pathend *self, t_stack *shortest_path)
 		self->room_name = ft_strdup(room_con_list[i]);
 		if (!is_occupied(room_con_list[i], ocupied_rooms) && 
 			!(isinpath(room_con_list[i], self->curr_path_list)))
-			path_to_end(duplicate_var(self), shortest_path);
+			{
+				res = path_to_end(duplicate_var(self), shortest_path, stop);
+				if (res && stop)
+					return (1);
+			}
 		i++;
 	}
+	// printf("end of branch\n");
 	// free(room_con_list);
 	room_con_list = NULL;
+	return (0);
 }
 
 void find_path(t_lemin* lemin, t_ant *ant)
@@ -106,14 +118,18 @@ void find_path(t_lemin* lemin, t_ant *ant)
 	self = init_self(lemin);
 	shortest_path = init_shortest_path();
 	// change so that if path == null - no path and then erro exit (error handling)
+	// printf("23\n");
+	int stop;
 	
+	stop = (lemin->room_list->length > 350) ? 1 : 0;
+	// dprintf(2,"Stop: %d\n", stop);
 	while(shortest_path->start == NULL)
 	{
 
 		self->turn_num++;
 		self->turn_start++;
 	
-		path_to_end(self, shortest_path);
+		path_to_end(self, shortest_path, stop);
 
 		// printf("\n printf ---- shorteset path --- %p\n", shortest_path->start);
 		// print_str_stack(shortest_path);

@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 07:34:14 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/28 11:30:28 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void		add_room_to_pathlist(char *room_name, t_stack *path_list);
 void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path);
 t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);
 
-void		path_to_end(t_pathend *self, t_stack *shortest_path);
-void		run_new_branchs(t_pathend *self, t_stack *shortest_path);
+int			path_to_end(t_pathend *self, t_stack *shortest_path, int stop);
+int			run_new_branchs(t_pathend *self, t_stack *shortest_path, int stop);
 void		find_path(t_lemin *lemin, t_ant *ant);
 
 void		print_lemin(t_lemin *lemin);
@@ -62,6 +62,7 @@ void		print_str_stack(t_stack *stack);
 t_stack		*ft_stackdup(t_stack *stack);
 void		ft_stackdel(t_stack **stack);
 void		ft_stackrev(t_stack *stack);
+void		delete(void *content, size_t size);
 
 void		print_moves(t_stack *moves, int num_ants);
 void		assign_path(t_lemin *lemin, t_stack *path);
