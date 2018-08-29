@@ -17,7 +17,6 @@ int	is_occupied(char *room_name, t_stack *ocupied_rooms)
 	if (ft_strinstack(room_name, ocupied_rooms) == 1)
 		return (1);
 	return (0);
-
 }
 
 int	isinpath(char *room_name, t_stack *rooms_visted)

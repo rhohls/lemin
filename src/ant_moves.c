@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
+#define A_PTH ant->path
+#define A_TRN_NUM ant->turn_num
 
 t_list	*make_ant(int ant_num, t_stack *path, int turn_start)
 {
@@ -23,7 +25,7 @@ t_list	*make_ant(int ant_num, t_stack *path, int turn_start)
 	ret_ant->turn_num = turn_start;
 	ret = malloc(sizeof(t_list));
 	ret->content = ret_ant;
-	return(ret);
+	return (ret);
 }
 
 /*
@@ -35,7 +37,7 @@ void	assign_path(t_lemin *lemin, t_stack *path)
 {
 	int		i;
 	t_list	*ant_node;
-	
+
 	i = 1;
 	while (i <= lemin->num_ants)
 	{
@@ -49,8 +51,8 @@ char	*room_name(t_stack *path, int index)
 {
 	int		i;
 	t_list	*node;
-	
-	node = path->start;	
+
+	node = path->start;
 	i = 0;
 	while (i < index)
 	{
@@ -58,7 +60,7 @@ char	*room_name(t_stack *path, int index)
 		if (node == NULL)
 		{
 			ft_putstr("Error with printing an ant path\n");
-			exit (0);
+			exit(0);
 		}
 		i++;
 	}
@@ -71,7 +73,7 @@ void	print_ant_moves(t_lemin *lemin)
 	int		print;
 	t_list	*ant_node;
 	t_ant	*ant;
-	
+
 	while (1)
 	{
 		ant_node = lemin->ant_list->start;
@@ -82,7 +84,7 @@ void	print_ant_moves(t_lemin *lemin)
 			ant = ant_node->content;
 			if (ant->turn_num >= 0 && ant->turn_num < (int)ant->path->length)
 			{
-				ft_printf("L%i-%s ", ant->number, room_name(ant->path, ant->turn_num));
+				ft_printf("L%i-%s ", ant->number, room_name(A_PTH, A_TRN_NUM));
 				print = 1;
 			}
 			ant->turn_num++;

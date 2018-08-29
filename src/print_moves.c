@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
-	
+
 void	print_moves(t_stack *moves, int num_ants)
 {
-	int i;
-	t_list *node;
+	int		i;
+	t_list	*node;
 
 	if (!moves || !(moves->start) || !(moves->start->next))
 		return ;
@@ -23,11 +23,11 @@ void	print_moves(t_stack *moves, int num_ants)
 	while (i <= num_ants)
 	{
 		node = moves->start->next;
-		while(node)
+		while (node)
 		{
 			printf("L%i-%s\n", i, node->content);
 			node = node->next;
-		}		
+		}
 		i++;
 	}
 }
