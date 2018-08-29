@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 08:24:57 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:02:32 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_stack		*ft_stackdup(t_stack *stack)
 
 void		delete(void *content, size_t size)
 {
-	// printf("string to delete: |%s|\n", content);
 	if (size > 0)
 	{
 		free (content);
@@ -60,9 +59,7 @@ void		ft_stackdel(t_stack **stack)
 {
 	if (stack && *stack)
 	{
-		// printf("deleting stack\n");
 		ft_lstdel(&((*stack)->start), delete);
-		// printf("deleted stack\n");
 		free(*stack);
 		*stack = NULL;
 	}

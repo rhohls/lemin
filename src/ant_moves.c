@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 07:05:11 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 08:58:15 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:05:32 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,21 @@ void	assign_path(t_lemin *lemin, t_stack *path)
 
 char	*room_name(t_stack *path, int index)
 {
-	// printf("in finding room, path is:\n");
-	// print_str_stack(path);
 	int		i;
 	t_list	*node;
 	
 	node = path->start;	
 	i = 0;
-	// printf("\nlooking for index %i\n", index);
 	while (i < index)
 	{
-		// printf("in while\n");
 		node = node->next;
 		if (node == NULL)
 		{
-			ft_putstr("\nError with printing an ant path\n");
+			ft_putstr("Error with printing an ant path\n");
 			exit (0);
 		}
 		i++;
 	}
-	// ft_putstr(node->content);
 	return (node->content);
 }
 
@@ -77,7 +72,6 @@ void	print_ant_moves(t_lemin *lemin)
 	t_list	*ant_node;
 	t_ant	*ant;
 	
-	
 	while (1)
 	{
 		ant_node = lemin->ant_list->start;
@@ -86,7 +80,6 @@ void	print_ant_moves(t_lemin *lemin)
 		while (ant_node)
 		{
 			ant = ant_node->content;
-			// printf("Ant with num:%i   turn_num:%i    pathlength:%zu\n", ant->number, ant->turn_num, ant->path->length);
 			if (ant->turn_num >= 0 && ant->turn_num < (int)ant->path->length)
 			{
 				ft_printf("L%i-%s ", ant->number, room_name(ant->path, ant->turn_num));

@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/28 11:58:14 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/29 08:05:46 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC_FILE =	add_connection.c	\
 			data_collection.c	\
 			data_free.c		\
 			ft_strin.c		\
-			generate_paths.c	\
 			inits.c			\
 			path_bool.c		\
 			pathing.c		\

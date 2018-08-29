@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 11:06:02 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 08:44:58 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void exit_redefine_special(void)
 {
-	ft_putstr("Error: Redefined start/end room");
+	ft_putstr("Error: Redefined start/end room\n");
 	exit(0);
 }
 
@@ -93,8 +93,8 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 	
 	if (ft_strcmp(str, "start") != 0 && ft_strcmp(str, "end") != 0)
 		return ;
-		
-	*node = (*node)->next;
+	while(*node && (*node)->content && ((char *)((*node)->content))[0] == '#')
+		*node = (*node)->next;
 	line = (*node)->content;	
 
 	// printf("line spec:|%s|\n", line);

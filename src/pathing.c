@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 07:10:24 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 08:56:28 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,5 @@ void find_path(t_lemin* lemin, t_ant *ant)
 	ant->turn_num = self->turn_num;
 	ft_stackrev(shortest_path);
 	ant->path = shortest_path;
-
-	// printf("\ncheck leaks after path\n");
-	// sleep(5);
-
-	// return(shortest_path);
 }
 

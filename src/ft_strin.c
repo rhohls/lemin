@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strin.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:56 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:47:58 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:06:57 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_strinstack(char *str, t_stack *stack_x)
 	lst = stack_x->start;
 	while (lst)
 	{
-		// printf("string in stack, comparing |%s| with |%s| result: %i\n", str, lst->content, ft_strcmp(str, (char *)(lst->content)));
 		if (ft_strcmp(str, (char *)(lst->content)) == 0)
 			return (1);
 		lst = lst->next;

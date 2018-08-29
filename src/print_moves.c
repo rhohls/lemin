@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 07:30:30 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/23 07:30:35 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:16:10 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	print_moves(t_stack *moves, int num_ants)
 {
 	int i;
-	// int turn_num;
 	t_list *node;
 
 	if (!moves || !(moves->start) || !(moves->start->next))

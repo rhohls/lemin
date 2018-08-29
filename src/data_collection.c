@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 11:06:00 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 08:45:26 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ t_lemin *capture_data(int fd)
 	line = node->content;
 	node = node->next;	
 
-	lemin->num_ants = ft_atoi(line);
-	if (lemin->num_ants == 0)
+	lemin->num_ants = ft_atoi_long(line);
+	// printf("num ants: %d\n",lemin->num_ants);
+	if (lemin->num_ants <= 0)
 	{
 		ft_dprintf(1, "Error: Bad number of ants\n");
 		exit(0);		
@@ -106,7 +107,7 @@ t_lemin *capture_data(int fd)
 		// printf("\tdone\n");
 		if (bad_command(line))
 		{
-			printf("bad command: |%s|", line); //see pdf ignore it.
+			printf("Error:\n Bad command: |%s|\n", line); //see pdf ignore it.
 			exit(0);
 		}
 		else if (line[0] == '#' && line[1] == '#')

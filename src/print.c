@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:57 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 08:12:49 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:16:15 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	print_str_connection(t_stack *con_list_stack)
 		return ;
 	}
 	connection = con_list_stack->start;
-	// printf("just added |%s|\n", room_con->connect_list->start->content);
 	while(connection)
 	{
 		printf("\t\t%s\n", (char *)(connection->content));
@@ -110,7 +109,6 @@ void    print_lemin(t_lemin *lemin)
 	printf("End   |%s|\n", lemin->end);
 	printf("Number of ants :%i:\n", lemin->num_ants);
 	printf("\nAll room names:\n");
-	// printf("first in list %p - %s\n", lemin->room_list->start, lemin->room_list->start->content);
 	print_str_stack(lemin->room_list);
 	printf("\t-done-\n");
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_connection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:15 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:47:18 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:06:54 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ t_con *find_con(t_stack *connections, char *room_name)
 	while(node)
 	{
 		connect = node->content;
-		// printf("comparing input |%s| with conn name |%s|\n", room_name, connect->name);
 		if (ft_strcmp(connect->name, room_name) == 0)
 		{
-			// printf("returnning connection\n");
 			return(connect);
 		}
 		node = node->next;
@@ -68,15 +66,14 @@ void add_connection(char *str, t_lemin *lemin)
 
 	if (!(con_details = ft_strsplit(str, '-')))
 	{
-		printf("fail malloc strsplit for connection\n");
+		printf("Error:\nFail malloc\n");
 		exit(0);
 	}
 	if (con_details[2] != NULL)
 	{
-		printf("Issue with adding a connection (more than 2 arguments)\n");
+		printf("Error:\nIssue with adding a connection (more than 2 arguments)\n");
 		exit(0);
 	}
-	// printf("room1 |%s| room2 |%s|\n", con_details[0], con_details[1]);
 
 	room_con = find_con(lemin->connections, con_details[0]);
 	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]));
@@ -86,6 +83,5 @@ void add_connection(char *str, t_lemin *lemin)
 	node = ft_lstnew(con_details[0], ft_strlen(con_details[0]));
 	ft_stackpush(room_con->connect_list, node);
 
-	// printf("detail addconection2\n %s \n", (char*)((t_con *)lemin->connections->start->content)->name);
 	ft_del_chararr(con_details, 3);			
 }

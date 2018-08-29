@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:07 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:48:10 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:07:04 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_pathend	*init_self(t_lemin* lemin)
 {
-	// pass variable to assign start, end etc
 	t_pathend *self;
 
 	self = (t_pathend *)malloc(sizeof(t_pathend));

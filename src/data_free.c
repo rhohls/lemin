@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   data_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhohls <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:46 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/13 07:47:48 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 09:23:33 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
-/*
-typedef struct	s_pathend
-{
-	char		*end;
-	t_stack		*all_connections; //stack pointing to t_con
-	t_stack		*turn_moves; //see above
-	int			turn_start;
-	 ^-const   v-delta 
-	t_stack		*curr_path_list; 	
-	char		*room_name;
-	int			turn_num;
-}				t_pathend;
-*/
 
 t_pathend	*duplicate_var(t_pathend *self)
 {
