@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 13:34:34 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/29 07:10:24 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int path_to_end(t_pathend *self, t_stack *shortest_path, int stop)
 
 	if (ft_strcmp(self->end, self->room_name) == 0)
 	{
-		// printf("at end room\n");
+		// printf("\n !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 at end room\n");
 		update_shrtpth(self->curr_path_list, &shortest_path);
 		// printf("Made new path, it is:\n");
 		// print_str_stack(shortest_path);
