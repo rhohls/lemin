@@ -6,11 +6,18 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:07 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 09:07:04 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/30 07:18:28 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
+
+void		init_ant(t_ant *ant)
+{
+	ant->number = 1;
+	ant->turn_num = 0;
+	ant->path = NULL;
+}
 
 t_pathend	*init_self(t_lemin *lemin)
 {

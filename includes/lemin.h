@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 11:30:28 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/30 07:18:37 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int			ft_strinstack(char *str, t_stack *stack_x);
 int			ft_strinlist(char *str, char **list, int list_len);
 void		ft_lstaddfront(t_list **alst, t_list *new_lst);
 
+void		init_ant(t_ant *ant);
 t_pathend	*init_self(t_lemin *lemin);
 t_stack		*init_shortest_path(void);
 t_lemin		*init_lemin(void);
