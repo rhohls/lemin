@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/28 11:30:28 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/30 07:18:37 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LEMIN_H
 
 # include "../libft/includes/libft.h"
-# include "./lemin_struct.h"
+# include "lemin_struct.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -34,17 +34,20 @@ void		ft_del_chararr(char **array, int amt);
 
 int			ft_strinstack(char *str, t_stack *stack_x);
 int			ft_strinlist(char *str, char **list, int list_len);
+void		ft_lstaddfront(t_list **alst, t_list *new_lst);
 
-t_pathend	*init_self(t_lemin* lemin);
+void		init_ant(t_ant *ant);
+t_pathend	*init_self(t_lemin *lemin);
 t_stack		*init_shortest_path(void);
-void		init_lemin(t_lemin *lemin);
+t_lemin		*init_lemin(void);
 
 int			isinpath(char *room_name, t_stack *rooms_visted);
 int			is_occupied(char *room_name, t_stack *ocupied_rooms);
 
 char		**ft_stacktochar(t_stack *stack);
 t_pathend	*duplicate_var(t_pathend *self);
-char		**get_char_con_list(char *room_name, void *all_connections, int *num_con);
+char		**get_char_con_list(char *room_name,
+								void *all_connections, int *num_con);
 void		add_room_to_pathlist(char *room_name, t_stack *path_list);
 void		update_shrtpth(t_stack *curr_path_list, t_stack **shortest_path);
 t_stack		*get_ocupied_rooms(t_stack *turn_moves, int turn_num);

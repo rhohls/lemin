@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/29 08:05:46 by rhohls           ###   ########.fr        #
+#    Updated: 2018/08/30 10:04:38 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRC_FILE =	add_connection.c	\
 			path_bool.c		\
 			pathing.c		\
 			pathing_func.c	\
-			print.c			\
 			print_moves.c	\
 			stack_functions.c	\
 			ant_moves.c		\

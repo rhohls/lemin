@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/lemin.h"
 
-t_list	*ft_lstdup(t_list *node)
+t_list		*ft_lstdup(t_list *node)
 {
 	t_list	*new;
 
@@ -38,20 +37,20 @@ t_stack		*ft_stackdup(t_stack *stack)
 
 	new = ft_stacknew();
 	node = stack->start;
-	while(node)
+	while (node)
 	{
 		node_new = ft_lstdup(node);
 		ft_stackqueue(new, node_new);
 		node = node->next;
 	}
-	return(new);
+	return (new);
 }
 
 void		delete(void *content, size_t size)
 {
 	if (size > 0)
 	{
-		free (content);
+		free(content);
 	}
 }
 
@@ -73,7 +72,7 @@ void		ft_stackrev(t_stack *stack)
 
 	i = stack->length;
 	if (!stack || !(stack->start))
-		return;
+		return ;
 	new = ft_stacknew();
 	node = stack->start;
 	while (i > 0 && node)

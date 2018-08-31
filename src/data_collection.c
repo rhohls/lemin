@@ -6,13 +6,13 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 08:45:26 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/31 14:22:23 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-int bad_command(char *str)
+int			bad_command(char *str)
 {
 	if (str == NULL || str[0] == '\0' || str[0] == '\n')
 		return (1);
@@ -20,141 +20,91 @@ int bad_command(char *str)
 		return (0);
 }
 
-void	ft_lstaddfront(t_list **alst, t_list *new_lst)
-{
-	t_list *node;
-
-	if(!alst || !new_lst)
-		return ;
-	if (*alst == NULL)
-	{
-		*alst = new_lst;
-		return;
-	}
-	node = *alst;
-	while(node->next != NULL)
-		node = node->next;
-	node->next = new_lst;
-}
-
-void	read_data(t_lemin *lemin, int fd)
+void		read_data(t_lemin *lemin, int fd)
 {
 	char	*line;
 	int		gnl_ret;
 	t_list	*temp;
-	
-	// printf("start read data  %p\n", lemin->map_feed);
 
 	while ((gnl_ret = get_next_line(fd, &line)) == 1)
 	{
-		// printf("add line: |%s|\n", line);
 		temp = ft_lstnew(line, ft_strlen(line) + 1);
-		// printf("stored content: |%s|\n", temp->content);
 		ft_lstaddfront(&(lemin->map_feed), temp);
 		free(line);
 	}
 	if (gnl_ret == -1)
 	{
-		printf("Error reading data\n");
+		ft_printf("Error reading data\n");
 		exit(0);
 	}
 	else if (gnl_ret == 0 && (lemin->map_feed == NULL))
 	{
-		printf("Error reading data\n");
+		ft_printf("Error reading data\n");
 		exit(0);
 	}
 }
 
+static void	capture_data_1(int fd, t_lemin **lemin, char **line, t_list **node)
+{
+	*lemin = init_lemin();
+	read_data(*lemin, fd);
+	*node = (*lemin)->map_feed;
+	while (*node && (*node)->content && ((char *)((*node)->content))[0] == '#')
+		*node = (*node)->next;
+	*line = (*node)->content;
+	if (bad_command(*line))
+	{
+		ft_printf("Error:\nBad line: |%s|\n", *line);
+		exit(0);
+	}
+	(*lemin)->num_ants = ft_atoi_long(*line);
+	if ((*lemin)->num_ants <= 0)
+	{
+		ft_printf("Error: Bad number of ants\n");
+		ft_printf("string %s\n", *line);
+		exit(0);
+	}
+	*node = (*node)->next;
+}
 
-t_lemin *capture_data(int fd)
+t_lemin		*capture_data(int fd)
 {
 	t_lemin *lemin;
 	char	*line;
 	t_list	*node;
 
-	lemin = (t_lemin *)malloc(sizeof(t_lemin));
-	init_lemin(lemin);
-
-	read_data(lemin, fd);
-	
-	node = lemin->map_feed;
-	// while(node)
-	// {
-	// 	line = node->content;
-	// 	printf("line: |%s|\n",line);
-	// 	node = node->next;	
-	// }
-	// printf("\n");
-
-	node = lemin->map_feed;
-	line = node->content;
-	node = node->next;	
-
-	lemin->num_ants = ft_atoi_long(line);
-	// printf("num ants: %d\n",lemin->num_ants);
-	if (lemin->num_ants <= 0)
-	{
-		ft_dprintf(1, "Error: Bad number of ants\n");
-		exit(0);		
-	}
-
-	while(node)
+	capture_data_1(fd, &lemin, &line, &node);
+	while (node)
 	{
 		line = node->content;
-		// printf("gnl line :|%s|\n", line);
-		// printf("room_list:\n");
-		// print_str_stack(lemin->room_list);
-		// printf("\tdone\n");
 		if (bad_command(line))
 		{
-			printf("Error:\n Bad command: |%s|\n", line); //see pdf ignore it.
+			ft_printf("Error:\nBad line: |%s|\n", line);
 			exit(0);
 		}
 		else if (line[0] == '#' && line[1] == '#')
-		{
 			add_special_room(line + 2, lemin, &node);
-		}
 		else if (ft_strchr(line, '-'))
-		{
-			// break into new gnl loop -- do this !!!!
-			// maybe - cause all conns come after rooms
 			add_connection(line, lemin);
-		}
 		else if (line[0] != '#')
-		{
-			// printf("adding from room :%s\n", line);
-			// printf("not #1 |%s|\n", lemin->start);
 			add_room(line, lemin);
-			// printf("not #2 |%s|\n", lemin->start);
-		}
-		// printf("check leaks\n\n");
-		// sleep(1);
-		// free(line);
-		node =node->next;
+		node = node->next;
 	}
 	update_capture(lemin);
-
-	// printf("room_list:\n");
-	// print_str_stack(lemin->room_list);
-	// printf("\tdone\n");
-	return(lemin);
+	return (lemin);
 }
 
-void		update_con(t_lemin *lemin)
+void		update_capture(t_lemin *lemin)
 {
 	t_list	*node;
 	t_con	*con;
 
 	node = lemin->connections->start;
-	while(node)
+	while (node)
 	{
 		con = node->content;
 		con->num_connections = con->connect_list->length;
 		con->conections = ft_stacktochar(con->connect_list);
 		node = node->next;
-	}	
-}
-void		update_capture(t_lemin *lemin)
-{
-	update_con(lemin);
+	}
 }

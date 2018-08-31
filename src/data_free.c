@@ -14,7 +14,6 @@
 
 t_pathend	*duplicate_var(t_pathend *self)
 {
-	/* duplicate all the variables */
 	t_pathend *new;
 
 	new = (t_pathend *)malloc(sizeof(t_pathend));
@@ -22,24 +21,21 @@ t_pathend	*duplicate_var(t_pathend *self)
 	new->all_connections = self->all_connections;
 	new->turn_moves = self->turn_moves;
 	new->turn_start = self->turn_start;
-
 	new->curr_path_list = ft_stackdup(self->curr_path_list);
 	new->room_name = ft_strdup(self->room_name);
-
+	new->turn_num = self->turn_num + 1;
 	return (new);
 }
 
-void    delete_var(t_pathend **self)
+void		delete_var(t_pathend **self)
 {
-	/* free only the following variables */
-
 	free((*self)->room_name);
 	ft_stackdel(&((*self)->curr_path_list));
 	free(*self);
 	*self = NULL;
 }
 
-void    ft_del_chararr(char **array, int amt)
+void		ft_del_chararr(char **array, int amt)
 {
 	int i;
 

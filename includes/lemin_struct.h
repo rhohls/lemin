@@ -10,21 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_STUCT_H
-# define LEMIN_STUCT_H
+#ifndef LEMIN_STRUCT_H
+# define LEMIN_STRUCT_H
 
 # include "../libft/includes/libft.h"
-/* Will only need if printing 
-typedef struct	s_room
-{
-	char		*name;
-	int			x_pos;
-	int			y_pos;
-}				t_room;
-*/
 
 /*
-** room list is
+** Will only need if printing
+** typedef struct	s_room
+** {
+** 	char		*name;
+** 	int			x_pos;
+** 	int			y_pos;
+** }				t_room;
 */
 
 typedef struct	s_lemin
@@ -66,11 +64,11 @@ typedef struct	s_connection
 typedef struct	s_pathend
 {
 	char		*end;
-	t_stack		*all_connections; //stack pointing to t_con
-	t_stack		*turn_moves; //see above
+	t_stack		*all_connections;
+	t_stack		*turn_moves;
 	int			turn_start;
-	/* ^-const   v-delta */
-	t_stack		*curr_path_list; 	
+
+	t_stack		*curr_path_list;
 	char		*room_name;
 	int			turn_num;
 }				t_pathend;
@@ -86,8 +84,8 @@ typedef struct	s_vertex
 
 typedef struct	s_graphpath
 {
-	t_stack		*graph;		//list of vertex
-	t_stack		*all_paths;	//list of paths
+	t_stack		*graph;
+	t_stack		*all_paths;
 }				t_graphpath;
 
 typedef t_stack	t_path;

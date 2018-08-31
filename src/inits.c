@@ -6,13 +6,20 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:07 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 09:07:04 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/08/30 07:18:28 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-t_pathend	*init_self(t_lemin* lemin)
+void		init_ant(t_ant *ant)
+{
+	ant->number = 1;
+	ant->turn_num = 0;
+	ant->path = NULL;
+}
+
+t_pathend	*init_self(t_lemin *lemin)
 {
 	t_pathend *self;
 
@@ -24,7 +31,6 @@ t_pathend	*init_self(t_lemin* lemin)
 	self->turn_start = -1;
 	self->curr_path_list = ft_stacknew();
 	self->turn_num = -1;
-
 	return (self);
 }
 
@@ -37,8 +43,11 @@ t_stack		*init_shortest_path(void)
 	return (shortest_path);
 }
 
-void		init_lemin(t_lemin *lemin)
+t_lemin		*init_lemin(void)
 {
+	t_lemin *lemin;
+
+	lemin = (t_lemin *)malloc(sizeof(t_lemin));
 	lemin->start = NULL;
 	lemin->end = NULL;
 	lemin->num_ants = 0;
@@ -47,4 +56,5 @@ void		init_lemin(t_lemin *lemin)
 	lemin->ant_list = ft_stacknew();
 	lemin->turn_moves = ft_stacknew();
 	lemin->connections = ft_stacknew();
+	return (lemin);
 }
