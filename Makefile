@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/30 10:04:38 by rhohls           ###   ########.fr        #
+#    Updated: 2018/09/03 08:13:21 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_FILE =	add_connection.c	\
 			print_moves.c	\
 			stack_functions.c	\
 			ant_moves.c		\
+			print.c			\
 	
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)

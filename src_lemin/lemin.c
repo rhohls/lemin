@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:56:17 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/30 07:20:02 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/03 08:13:45 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int			main(void)
 
 	lemin = capture_data(0);
 	post_data_collect(lemin);
+	print_lemin(lemin);
 	init_ant(&ant);
 	find_path(lemin, &ant);
 	if (ant.path == NULL || ant.path->start == NULL)

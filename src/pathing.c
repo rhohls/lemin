@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/31 14:23:58 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/03 10:43:36 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		del_ret(t_pathend *self, int ret)
 int		path_to_end(t_pathend *self, t_stack *shortest_path, int stop)
 {
 	int res;
+	
+	printf("in pte with name %s\n", self->room_name);
 
 	if ((self->curr_path_list->length + 1) > (shortest_path->length))
 	{
@@ -58,7 +60,7 @@ int		run_new_branchs(t_pathend *self, t_stack *shortest_path, int stop)
 	int		res;
 
 	i = 0;
-	printf("in new brach room name: %s\n", self->room_name);
+	ft_printf("in new brach room name: %s\n", self->room_name);
 	room_con_list = get_char_con_list(self->room_name, self->all_connections,
 									&num_connections);
 	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
@@ -66,10 +68,11 @@ int		run_new_branchs(t_pathend *self, t_stack *shortest_path, int stop)
 	{
 		free(self->room_name);
 		self->room_name = ft_strdup(room_con_list[i]);
-		printf("")
+		ft_printf("con list: %s \t room name: %s\n",room_con_list[i], self->room_name );
 		if (!is_occupied(room_con_list[i], ocupied_rooms) &&
 				!(isinpath(room_con_list[i], self->curr_path_list)))
 		{
+			printf("2 self->roomname: %s  @ %p\n",self->room_name, self->room_name);
 			res = path_to_end(duplicate_var(self), shortest_path, stop);
 			if (res && stop)
 				return (1);
@@ -87,6 +90,7 @@ void	find_path(t_lemin *lemin, t_ant *ant)
 	int			stop;
 
 	self = init_self(lemin);
+	printf("start room %s \n", lemin->start);
 	shortest_path = init_shortest_path();
 	stop = (lemin->room_list->length > 350) ? 1 : 0;
 	while (shortest_path->start == NULL)

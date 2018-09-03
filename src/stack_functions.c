@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 09:02:32 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/03 12:56:08 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ t_list		*ft_lstdup(t_list *node)
 {
 	t_list	*new;
 
-	if (!(new = (t_list *)malloc(sizeof(t_list))))
+	if (!(new = (t_list *)ft_memalloc(sizeof(t_list))))
 		return (NULL);
-	if (!(new->content = malloc(sizeof(node->content_size))))
+	if (!(new->content = ft_memalloc(sizeof(node->content_size))))
 	{
 		free(new);
 		return (NULL);
 	}
-	ft_memcpy(new->content, node->content, node->content_size);
+	ft_memmove(new->content, node->content, node->content_size);
 	new->content_size = node->content_size;
 	new->next = NULL;
 	return (new);
@@ -59,6 +59,26 @@ void		ft_stackdel(t_stack **stack)
 	if (stack && *stack)
 	{
 		ft_lstdel(&((*stack)->start), delete);
+		free(*stack);
+		*stack = NULL;
+	}
+}
+
+void	ft_del_onlylist(t_list **alst)
+{
+	if (alst && *alst)
+	{
+		if ((*alst)->next != NULL)
+			ft_del_onlylist(&((*alst)->next));
+		free(*alst);
+	}
+}
+
+void		ft_del_onlystack(t_stack **stack)
+{
+	if (stack && *stack)
+	{
+		ft_del_onlylist(&((*stack)->start));
 		free(*stack);
 		*stack = NULL;
 	}

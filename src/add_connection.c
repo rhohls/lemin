@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:15 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/31 14:22:10 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/03 08:28:17 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_con	*find_con(t_stack *connections, char *room_name)
 		}
 		node = node->next;
 	}
-	ft_putstr("exiting cause:\n");
-	ft_printf("No room |%s| found when trying to add connection\n", room_name);
+	ft_putstr("Exiting cause:\n");
+	ft_printf("No room |%s| found when trying to find connection\n", room_name);
 	exit(6);
 }
 
@@ -64,11 +64,12 @@ void	add_connection(char *str, t_lemin *lemin)
 		ft_printf("Error:\nIssue with adding a connection\n");
 		exit(0);
 	}
+	printf("con details: %s | %s | %s \n", con_details[0],con_details[1], con_details[2]);
 	room_con = find_con(lemin->connections, con_details[0]);
-	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]));
+	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]) + 1);
 	ft_stackpush(room_con->connect_list, node);
 	room_con = find_con(lemin->connections, con_details[1]);
-	node = ft_lstnew(con_details[0], ft_strlen(con_details[0]));
+	node = ft_lstnew(con_details[0], ft_strlen(con_details[0]) + 1);
 	ft_stackpush(room_con->connect_list, node);
 	ft_del_chararr(con_details, 3);
 }

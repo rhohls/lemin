@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/31 14:22:39 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/03 08:11:22 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,18 @@ void	add_room(char *str, t_lemin *lemin)
 	room_details = ft_strsplit(str, ' ');
 	room_error_check(room_details, str);
 	room_name = room_details[0];
-	
+	// printf("\nin add_room with str %s and room name %s\n", str, room_name);
 	if (room_name[0] == 'L')
 	{
 		ft_putstr("Error: Room name starting with \'L\'\n");
 		exit(0);
 	}
+	// printf("len of name: %zu \n", ft_strlen(room_name));
 	ft_stackpush(lemin->room_list,
-					ft_lstnew(room_name, ft_strlen(room_name)));
+					ft_lstnew(room_name, ft_strlen(room_name) + 1));
 	add_con_struct(room_name, lemin);
 	ft_del_chararr(room_details, 4);
+	printf("top room_list in add_room %s\n", lemin->room_list->start->content);
 }
 
 void	add_special_room(char *str, t_lemin *lemin, t_list **node)
@@ -78,6 +80,7 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 		if (lemin->start != NULL)
 			exit_redefine_special();
 		lemin->start = ft_strdup(room_name);
+		// printf("added start %s from %s\n", lemin->start, room_name);
 	}
 	else if (ft_strcmp(str, "end") == 0)
 	{
