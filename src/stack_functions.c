@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 12:56:08 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/05 16:10:55 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_list		*ft_lstdup(t_list *node)
 	if (!(new->content = ft_memalloc(sizeof(node->content_size))))
 	{
 		free(new);
-		return (NULL);
+		ft_putstr("Error with malloc\n");
+		exit(0);
 	}
 	ft_memmove(new->content, node->content, node->content_size);
 	new->content_size = node->content_size;

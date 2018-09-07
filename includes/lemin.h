@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 12:57:43 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 11:15:31 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+
+# define MATRIX lemin->matrix
+# define KEY lemin->key
 
 t_lemin		*capture_data(int fd);
 void		update_capture(t_lemin *lemin);
@@ -71,4 +74,9 @@ void		ft_del_onlystack(t_stack **stack);
 void		print_moves(t_stack *moves, int num_ants);
 void		assign_path(t_lemin *lemin, t_stack *path);
 void		print_ant_moves(t_lemin *lemin);
+
+
+char		**create_key(t_lemin *lemin);
+int **create_matrix(t_lemin *lemin);
+void	assign_matrix(t_lemin *lemin);
 #endif

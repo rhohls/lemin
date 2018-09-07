@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:46 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 12:57:24 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/05 16:16:26 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ t_pathend	*duplicate_var(t_pathend *self)
 
 void		delete_var(t_pathend **self)
 {
-	free((*self)->room_name);
-	ft_del_onlystack(&((*self)->curr_path_list));
-	free(*self);
-	*self = NULL;
+	// free((*self)->room_name);
+	// ft_del_onlystack(&((*self)->curr_path_list));
+	// free(*self);
+	// *self = NULL;
 	void *a;
 	a = *self;
 }

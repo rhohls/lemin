@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/17 13:08:28 by rhohls            #+#    #+#              #
-#    Updated: 2018/09/03 08:13:21 by rhohls           ###   ########.fr        #
+#    Updated: 2018/09/07 10:18:34 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_FILE =	add_connection.c	\
 			stack_functions.c	\
 			ant_moves.c		\
 			print.c			\
+			convert_to_matrix.c	\
 	
 
 OBJ_FILE = $(SRC_FILE:%.c=%.o)
@@ -45,7 +46,7 @@ NAME_MAIN = ./src_lemin/lemin.c
 
 #Compile
 CCFLAGS = -Wall -Werror -Wextra
-CC = gcc $(CCFLAGS)
+CC = gcc #$(CCFLAGS)
 
 LIBF = $(LIB_PATH)libft.a
 

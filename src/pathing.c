@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:28 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 10:43:36 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/05 16:12:06 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ int		run_new_branchs(t_pathend *self, t_stack *shortest_path, int stop)
 	room_con_list = get_char_con_list(self->room_name, self->all_connections,
 									&num_connections);
 	ocupied_rooms = get_ocupied_rooms(self->turn_moves, self->turn_num);
+	free(self->room_name);
 	while (i < num_connections)
 	{
-		free(self->room_name);
+		
 		self->room_name = ft_strdup(room_con_list[i]);
 		ft_printf("con list: %s \t room name: %s\n",room_con_list[i], self->room_name );
 		if (!is_occupied(room_con_list[i], ocupied_rooms) &&

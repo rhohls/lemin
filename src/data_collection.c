@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/31 14:22:23 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 11:12:33 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void		update_capture(t_lemin *lemin)
 		con->conections = ft_stacktochar(con->connect_list);
 		node = node->next;
 	}
+	lemin->num_rooms = lemin->room_list->length;
 }

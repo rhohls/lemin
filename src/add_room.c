@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 08:11:22 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 11:25:20 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	add_room(char *str, t_lemin *lemin)
 					ft_lstnew(room_name, ft_strlen(room_name) + 1));
 	add_con_struct(room_name, lemin);
 	ft_del_chararr(room_details, 4);
-	printf("top room_list in add_room %s\n", lemin->room_list->start->content);
+	// printf("top room_list in add_room %s\n", lemin->room_list->start->content);
 }
 
 void	add_special_room(char *str, t_lemin *lemin, t_list **node)

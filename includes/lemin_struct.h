@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 07:44:37 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/27 07:08:47 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 11:45:27 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct	s_lemin
 	t_stack		*ant_list;
 	t_stack		*turn_moves;
 	t_stack		*connections;
+	int			num_rooms;
+	char		**key;
+	int			**matrix;
 }				t_lemin;
 
 typedef struct	s_ant
@@ -96,5 +99,11 @@ typedef struct	s_parallel
 	int			recurse_num;
 	t_graphpath	*best;
 }				t_parallel;
+
+typedef struct	s_shrt_path
+{
+	int			*path;
+	int			length;	
+}				s_shrt_path;
 
 #endif
