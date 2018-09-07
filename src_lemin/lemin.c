@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:56:17 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:27:07 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 14:31:35 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,34 @@ void		print_matrix(t_lemin *lemin)
 	}	
 }
 
+void	init_path(t_path *path, t_lemin *lemin)
+{
+	int i;
+	
+	path->length = 0;
+	path->path = malloc(sizeof(int) * lemin->num_rooms);
+	i = 0;
+	while (i < lemin->num_rooms)
+	{
+		path->path[i] = -1;
+		i++;
+	}
+}
+
+void	print_path(t_path path)
+{
+	int i;
+	
+	i = 0;
+	printf("Path:\n");
+	while (i < path.length)
+	{ 
+		ft_printf("%d ", path.path[i]);
+		i++;
+	}
+	printf("\n");
+}
+
 int			main(void)
 {
 	t_ant	ant;
@@ -84,12 +112,19 @@ int			main(void)
 		i++;
 	}
 
-	// print_matrix(lemin);
 	
 	assign_matrix(lemin);
-	
 	print_matrix(lemin);
 	
+	init_path(&(lemin->curr_path), lemin);
+	init_path(&(lemin->shortest_path), lemin);
+	printf("init path\n");
+	print_path(lemin->curr_path);
+	
+	matrix_find_path(lemin, 0, 0);
+	
+	printf("Shortest");
+	print_path(lemin->shortest_path);
 	
 	// init_ant(&ant);
 	// find_path(lemin, &ant);

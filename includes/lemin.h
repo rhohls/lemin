@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 08:57:02 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:15:31 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 14:30:03 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void		print_ant_moves(t_lemin *lemin);
 char		**create_key(t_lemin *lemin);
 int **create_matrix(t_lemin *lemin);
 void	assign_matrix(t_lemin *lemin);
+void	matrix_find_path(t_lemin *lemin, int ind_of_pth, int key_index);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:15 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 08:28:17 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 14:04:43 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	add_connection(char *str, t_lemin *lemin)
 		ft_printf("Error:\nIssue with adding a connection\n");
 		exit(0);
 	}
-	printf("con details: %s | %s | %s \n", con_details[0],con_details[1], con_details[2]);
 	room_con = find_con(lemin->connections, con_details[0]);
 	node = ft_lstnew(con_details[1], ft_strlen(con_details[1]) + 1);
 	ft_stackpush(room_con->connect_list, node);

@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 07:44:37 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:45:27 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/07 14:30:56 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 ** }				t_room;
 */
 
+typedef struct	s_path
+{
+	int			*path;
+	int			length;	
+}				t_path;
+
+
 typedef struct	s_lemin
 {
 	char		*start;
@@ -38,6 +45,8 @@ typedef struct	s_lemin
 	int			num_rooms;
 	char		**key;
 	int			**matrix;
+	t_path		shortest_path;
+	t_path		curr_path;
 }				t_lemin;
 
 typedef struct	s_ant
@@ -91,7 +100,7 @@ typedef struct	s_graphpath
 	t_stack		*all_paths;
 }				t_graphpath;
 
-typedef t_stack	t_path;
+// typedef t_stack	t_path;
 
 typedef struct	s_parallel
 {
@@ -100,10 +109,5 @@ typedef struct	s_parallel
 	t_graphpath	*best;
 }				t_parallel;
 
-typedef struct	s_shrt_path
-{
-	int			*path;
-	int			length;	
-}				s_shrt_path;
 
 #endif
