@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:15 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/08 13:45:31 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 13:54:41 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_con	*find_con(t_stack *connections, char *room_name)
 {
 	t_list	*node;
 	t_con	*connect;
-	
+
 	node = connections->start;
 	while (node)
 	{
@@ -43,8 +43,8 @@ t_con	*find_con(t_stack *connections, char *room_name)
 		}
 		node = node->next;
 	}
-	ft_putstr("An error occured:\n");
-	ft_printf("No room \"%s\" found when trying to find connection\n", room_name);
+	ft_printf("An error occured:\n No room \"%s\" \
+found when trying to find connection\n", room_name);
 	exit(0);
 }
 

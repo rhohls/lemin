@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:57 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/03 08:12:47 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 13:57:09 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	print_ant_details(t_ant *ant)
 	printf("Ant moves:\n");
 	print_str_stack(ant->path);
 }
-
 
 void	print_str_stack(t_stack *stack)
 {
@@ -117,5 +116,4 @@ void    print_lemin(t_lemin *lemin)
 	
 	printf("\nConnections:\n");
 	print_connections(lemin->connections);
-
 }

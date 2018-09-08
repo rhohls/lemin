@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/08 12:54:56 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:24:25 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void		read_data(t_lemin *lemin, int fd)
 
 static void	capture_data_1(int fd, t_lemin **lemin, char **line, t_list **node)
 {
-	
 	read_data(*lemin, fd);
 	*node = (*lemin)->map_feed;
 	while (*node && (*node)->content && ((char *)((*node)->content))[0] == '#')
@@ -72,9 +71,8 @@ t_lemin		*capture_data(int fd)
 	t_lemin *lemin;
 	char	*line;
 	t_list	*node;
-	
-	lemin = init_lemin();
 
+	lemin = init_lemin();
 	capture_data_1(fd, &lemin, &line, &node);
 	while (node)
 	{

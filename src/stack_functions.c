@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 08:01:35 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/05 16:10:55 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:25:16 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,44 +45,6 @@ t_stack		*ft_stackdup(t_stack *stack)
 		node = node->next;
 	}
 	return (new);
-}
-
-void		delete(void *content, size_t size)
-{
-	if (size > 0)
-	{
-		free(content);
-	}
-}
-
-void		ft_stackdel(t_stack **stack)
-{
-	if (stack && *stack)
-	{
-		ft_lstdel(&((*stack)->start), delete);
-		free(*stack);
-		*stack = NULL;
-	}
-}
-
-void	ft_del_onlylist(t_list **alst)
-{
-	if (alst && *alst)
-	{
-		if ((*alst)->next != NULL)
-			ft_del_onlylist(&((*alst)->next));
-		free(*alst);
-	}
-}
-
-void		ft_del_onlystack(t_stack **stack)
-{
-	if (stack && *stack)
-	{
-		ft_del_onlylist(&((*stack)->start));
-		free(*stack);
-		*stack = NULL;
-	}
 }
 
 void		ft_stackrev(t_stack *stack)

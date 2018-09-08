@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:52:16 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/29 08:41:14 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 13:53:40 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	result = ft_atoi_long(argv[1]);
-	printf("result %d\n", result);
+	ft_printf("An error occured:\nNo room \"%d\" \
+found when trying to find connection\n", result);
 	return (1);
 }

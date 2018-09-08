@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:44 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:25:33 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:09:56 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ char		**get_char_con_list(char *room_name,
 {
 	t_con	*connection;
 	char	**ret;
-	
-	// printf("get_char_con_list! with room name %s\n", room_name);
 
 	connection = find_con(all_connections, room_name);
 	ret = connection->conections;
 	*num_con = connection->num_connections;
-	// printf("1\n");
 	return (ret);
 }
 
