@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:48:07 by rhohls            #+#    #+#             */
-/*   Updated: 2018/08/30 07:18:28 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 12:05:13 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_lemin		*init_lemin(void)
 {
 	t_lemin *lemin;
 
-	lemin = (t_lemin *)malloc(sizeof(t_lemin));
+	lemin = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	lemin->start = NULL;
 	lemin->end = NULL;
 	lemin->num_ants = 0;
@@ -56,5 +56,6 @@ t_lemin		*init_lemin(void)
 	lemin->ant_list = ft_stacknew();
 	lemin->turn_moves = ft_stacknew();
 	lemin->connections = ft_stacknew();
+	lemin->print_path = 0;
 	return (lemin);
 }

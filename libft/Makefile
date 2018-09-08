@@ -6,7 +6,7 @@
 #    By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/01 07:07:02 by rhohls            #+#    #+#              #
-#    Updated: 2018/08/28 12:17:33 by rhohls           ###   ########.fr        #
+#    Updated: 2018/09/08 10:47:24 by rhohls           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,7 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILE))
 CCFLAGS = -Wall -Werror -Wextra
 CC = gcc $(CCFLAGS)
 
-#all: $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar -rc $(NAME) $(OBJ)

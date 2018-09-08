@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:25 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:25:20 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 13:40:55 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	add_room(char *str, t_lemin *lemin)
 	room_error_check(room_details, str);
 	room_name = room_details[0];
 	// printf("\nin add_room with str %s and room name %s\n", str, room_name);
-	if (room_name[0] == 'L')
+	if (room_name[0] == 'L' || ft_strinstack(room_name, lemin->room_list))
 	{
-		ft_putstr("Error: Room name starting with \'L\'\n");
+		ft_printf("Error: Invalid room \"%s\"\n", room_name);
 		exit(0);
 	}
 	// printf("len of name: %zu \n", ft_strlen(room_name));
@@ -67,8 +67,14 @@ void	add_special_room(char *str, t_lemin *lemin, t_list **node)
 {
 	char	*line;
 	char	*room_name;
-
-	if (ft_strcmp(str, "start") != 0 && ft_strcmp(str, "end") != 0)
+	
+	
+	if (ft_strcmp(str, "printadjust") == 0)
+	{
+		lemin->print_path = 1;
+		return ;
+	}
+	else if (ft_strcmp(str, "start") != 0 && ft_strcmp(str, "end") != 0)
 		return ;
 	// while (*node && (*node)->content && ((char *)((*node)->content))[0] == '#')
 	*node = (*node)->next;

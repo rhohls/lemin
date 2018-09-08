@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 07:47:34 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 11:12:33 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 12:54:56 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		read_data(t_lemin *lemin, int fd)
 
 static void	capture_data_1(int fd, t_lemin **lemin, char **line, t_list **node)
 {
-	*lemin = init_lemin();
+	
 	read_data(*lemin, fd);
 	*node = (*lemin)->map_feed;
 	while (*node && (*node)->content && ((char *)((*node)->content))[0] == '#')
@@ -72,6 +72,8 @@ t_lemin		*capture_data(int fd)
 	t_lemin *lemin;
 	char	*line;
 	t_list	*node;
+	
+	lemin = init_lemin();
 
 	capture_data_1(fd, &lemin, &line, &node);
 	while (node)
@@ -84,7 +86,7 @@ t_lemin		*capture_data(int fd)
 		}
 		else if (line[0] == '#' && line[1] == '#')
 			add_special_room(line + 2, lemin, &node);
-		else if (ft_strchr(line, '-'))
+		else if (line[0] != '#' && ft_strchr(line, '-'))
 			add_connection(line, lemin);
 		else if (line[0] != '#')
 			add_room(line, lemin);

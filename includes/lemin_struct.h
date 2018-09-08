@@ -6,7 +6,7 @@
 /*   By: rhohls <rhohls@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 07:44:37 by rhohls            #+#    #+#             */
-/*   Updated: 2018/09/07 14:30:56 by rhohls           ###   ########.fr       */
+/*   Updated: 2018/09/08 12:03:52 by rhohls           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_lemin
 	int			**matrix;
 	t_path		shortest_path;
 	t_path		curr_path;
+	int			print_path;
 }				t_lemin;
 
 typedef struct	s_ant
